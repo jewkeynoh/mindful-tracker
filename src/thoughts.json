@@ -1,0 +1,66 @@
+{
+  "thoughts": [
+    {
+      "id": "1",
+      "category": "Work",
+      "thought": "Feeling overwhelmed with deadlines.",
+      "intensity": "4",
+      "emoji": "😕",
+      "created_at": "2024-10-01 10:30:00"
+    },
+    {
+      "id": "c7f0",
+      "thought": "fdsafds",
+      "category": "Work",
+      "intensityLevel": "",
+      "created_at": "2024-10-12 06:57:51"
+    },
+    {
+      "id": "812a",
+      "thought": "fdsaf",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 06:59:19"
+    },
+    {
+      "id": "b15e",
+      "thought": "tae",
+      "category": "Work",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 06:59:29"
+    },
+    {
+      "id": "a605",
+      "thought": "tttt",
+      "category": "Work",
+      "intensityLevel": "",
+      "created_at": "2024-10-12 07:05:38"
+    },
+    {
+      "id": "8128",
+      "thought": "hahaha",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 07:06:46"
+    },
+    {
+      "id": "eb24",
+      "thought": "gggg",
+      "category": "Health",
+      "intensityLevel": 5,
+      "emoji": "🙁",
+      "created_at": "2024-10-12 07:06:59"
+    },
+    {
+      "id": "ebe3",
+      "thought": "fafsa",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 07:20:16"
+    }
+  ]
+}
