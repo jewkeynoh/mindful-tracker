@@ -1,66 +1,412 @@
 {
   "thoughts": [
     {
-      "id": "1",
-      "category": "Work",
-      "thought": "Feeling overwhelmed with deadlines.",
-      "intensity": "4",
-      "emoji": "😕",
-      "created_at": "2024-10-01 10:30:00"
+      "id": "0693",
+      "thought": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+      "category": "Relationships",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 15:01:49"
     },
     {
-      "id": "c7f0",
-      "thought": "fdsafds",
+      "id": "7fb0",
+      "thought": "hahahahahaa",
       "category": "Work",
-      "intensityLevel": "",
-      "created_at": "2024-10-12 06:57:51"
+      "intensityLevel": 10,
+      "emoji": "😭",
+      "created_at": "2024-10-12 15:01:59"
     },
     {
-      "id": "812a",
-      "thought": "fdsaf",
+      "id": "5c50",
+      "thought": "fdsafdsafdafdsa",
       "category": "Work",
       "intensityLevel": 2,
       "emoji": "🙂",
-      "created_at": "2024-10-12 06:59:19"
+      "created_at": "2024-10-12 16:13:05"
     },
     {
-      "id": "b15e",
+      "id": "1f8b",
       "thought": "tae",
+      "category": "Work",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 16:14:19"
+    },
+    {
+      "id": "5e82",
+      "thought": "fdsafdsafd",
+      "category": "Work",
+      "intensityLevel": 10,
+      "emoji": "😭",
+      "created_at": "2024-10-12 16:21:49"
+    },
+    {
+      "id": "6ccf",
+      "thought": "huhuhuhuhu",
+      "category": "Work",
+      "intensityLevel": 10,
+      "emoji": "😭",
+      "created_at": "2024-10-12 16:23:35"
+    },
+    {
+      "id": "d21d",
+      "thought": "ngeeee",
       "category": "Work",
       "intensityLevel": 1,
       "emoji": "😊",
-      "created_at": "2024-10-12 06:59:29"
+      "created_at": "2024-10-12 16:31:49"
     },
     {
-      "id": "a605",
-      "thought": "tttt",
+      "id": "79dd",
+      "thought": "yeyeyeye",
+      "category": "Relationships",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 16:32:49"
+    },
+    {
+      "id": "19cc",
+      "thought": "bbbb",
       "category": "Work",
-      "intensityLevel": "",
-      "created_at": "2024-10-12 07:05:38"
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 16:33:00"
     },
     {
-      "id": "8128",
-      "thought": "hahaha",
+      "id": "3151",
+      "thought": "eeee",
+      "category": "Relationships",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 16:38:40"
+    },
+    {
+      "id": "7a90",
+      "thought": "ddddd",
+      "category": "Relationships",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 16:41:30"
+    },
+    {
+      "id": "b31d",
+      "thought": "fdfdfdfd",
+      "category": "Work",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 16:43:34"
+    },
+    {
+      "id": "c62d",
+      "thought": "fd",
+      "category": "Relationships",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 16:45:08"
+    },
+    {
+      "id": "3dec",
+      "thought": "fdsafdsafdsafdsa",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 16:49:13"
+    },
+    {
+      "id": "59e5",
+      "thought": "ddddddd",
       "category": "Work",
       "intensityLevel": 2,
       "emoji": "🙂",
-      "created_at": "2024-10-12 07:06:46"
+      "created_at": "2024-10-12 16:50:30"
     },
     {
-      "id": "eb24",
-      "thought": "gggg",
-      "category": "Health",
+      "id": "f182",
+      "thought": "fdfd",
+      "category": "Relationships",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 16:50:59"
+    },
+    {
+      "id": "6c5f",
+      "thought": "fdf",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 16:51:33"
+    },
+    {
+      "id": "55f4",
+      "thought": "d",
+      "category": "Work",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 16:51:58"
+    },
+    {
+      "id": "7f84",
+      "thought": "fd",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 16:54:31"
+    },
+    {
+      "id": "564a",
+      "thought": "fdsafdsaf",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 17:07:13"
+    },
+    {
+      "id": "4e35",
+      "thought": "f",
+      "category": "Relationships",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 17:11:02"
+    },
+    {
+      "id": "212e",
+      "thought": "d",
+      "category": "Work",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 17:12:37"
+    },
+    {
+      "id": "881c",
+      "thought": "dsad",
+      "category": "Work",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 17:13:32"
+    },
+    {
+      "id": "de67",
+      "thought": "d",
+      "category": "Work",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 17:13:50"
+    },
+    {
+      "id": "0dde",
+      "thought": "dsds",
+      "category": "Work",
+      "intensityLevel": 8,
+      "emoji": "😖",
+      "created_at": "2024-10-12 17:15:06"
+    },
+    {
+      "id": "76b5",
+      "thought": "ddddd",
+      "category": "Work",
       "intensityLevel": 5,
       "emoji": "🙁",
-      "created_at": "2024-10-12 07:06:59"
+      "created_at": "2024-10-12 17:16:49"
     },
     {
-      "id": "ebe3",
-      "thought": "fafsa",
+      "id": "598c",
+      "thought": "fd",
+      "category": "Relationships",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 17:17:43"
+    },
+    {
+      "id": "6b8f",
+      "thought": "dsfd",
+      "category": "Health",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-12 17:19:12"
+    },
+    {
+      "id": "053c",
+      "thought": "fds",
+      "category": "Work",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 17:20:23"
+    },
+    {
+      "id": "0ed0",
+      "thought": "fsafsafs",
+      "category": "Work",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 17:22:19"
+    },
+    {
+      "id": "7fd3",
+      "thought": "ds",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:23:14"
+    },
+    {
+      "id": "e483",
+      "thought": "ds",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:23:29"
+    },
+    {
+      "id": "fd6c",
+      "thought": "l",
       "category": "Work",
       "intensityLevel": 2,
       "emoji": "🙂",
-      "created_at": "2024-10-12 07:20:16"
+      "created_at": "2024-10-12 17:24:14"
+    },
+    {
+      "id": "4990",
+      "thought": "dsad",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 17:25:42"
+    },
+    {
+      "id": "0c58",
+      "thought": "ds",
+      "category": "Relationships",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:26:01"
+    },
+    {
+      "id": "ce25",
+      "thought": "ggdsfd",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:26:47"
+    },
+    {
+      "id": "135a",
+      "thought": "sdafs",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:27:57"
+    },
+    {
+      "id": "a0f8",
+      "thought": "dsad",
+      "category": "Work",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:28:27"
+    },
+    {
+      "id": "86ca",
+      "thought": "fdsaf",
+      "category": "Health",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-12 17:28:33"
+    },
+    {
+      "id": "6f23",
+      "thought": "fdasfdsa",
+      "category": "Relationships",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 17:50:08"
+    },
+    {
+      "id": "6569",
+      "thought": "cdsacsdcd",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 17:54:04"
+    },
+    {
+      "id": "1715",
+      "thought": "fsaf",
+      "category": "Relationships",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-12 18:13:20"
+    },
+    {
+      "id": "514a",
+      "thought": "fdsafdsa",
+      "category": "Relationships",
+      "intensityLevel": 4,
+      "emoji": "😕",
+      "created_at": "2024-10-12 18:13:35"
+    },
+    {
+      "id": "391f",
+      "thought": "test",
+      "category": "Relationships",
+      "intensityLevel": 10,
+      "emoji": "😭",
+      "created_at": "2024-10-13 12:32:24"
+    },
+    {
+      "id": "4547",
+      "thought": "j",
+      "category": "Health",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-13 16:53:57"
+    },
+    {
+      "id": "494d",
+      "thought": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "category": "Relationships",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-14 02:36:25"
+    },
+    {
+      "id": "d7f7",
+      "thought": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+      "category": "Health",
+      "intensityLevel": 1,
+      "emoji": "😊",
+      "created_at": "2024-10-14 05:23:59"
+    },
+    {
+      "id": "0902",
+      "thought": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.",
+      "category": "Health",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-14 06:15:32"
+    },
+    {
+      "id": "d11d",
+      "thought": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.",
+      "category": "Relationships",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-14 06:15:51"
+    },
+    {
+      "id": "c566",
+      "thought": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "category": "Personal",
+      "intensityLevel": 5,
+      "emoji": "🙁",
+      "created_at": "2024-10-14 09:30:17"
+    },
+    {
+      "id": "2c48",
+      "thought": "fdsafds",
+      "category": "Relationships",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-14 10:14:05"
     }
   ]
 }

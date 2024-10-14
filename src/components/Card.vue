@@ -5,12 +5,16 @@ defineProps({
     bg: {
         type: String,
         default: 'bg-white'
+    },
+    mb: {
+        type: String,
+        default: 'mb-8'
     }
 });
 </script>
 
 <template>
-    <div :class="`${bg} rounded-xl p-8 pt-12 mb-8 shadow-sm`">
+    <div :class="`${bg} ${mb} border border-gray-300 lg:rounded-3xl p-8 shadow-sm`">
         <slot></slot>
     </div>
 </template>

@@ -1,0 +1,23 @@
+/* Add this to your custom CSS file (e.g., styles.css) */
+.Toastification__toast {
+    background-color: #323232 !important; /* Override background color */
+    color: #fff !important;               /* Override text color */
+    border-radius: 8px !important;       /* Override border radius */
+    padding: 15px !important;             /* Override padding */
+    font-size: 16px !important;           /* Override font size */
+}
+
+.Toastification__toast--success,
+.Toastification__toast--error,
+.Toastification__toast--info,
+.Toastification__toast--warning {
+    background-color: #323232 !important; /* Ensure all types have the same background */
+}
+
+/* Target specific toast classes more directly */
+.Toastification__toast.Toastification__toast--success,
+.Toastification__toast.Toastification__toast--error,
+.Toastification__toast.Toastification__toast--info,
+.Toastification__toast.Toastification__toast--warning {
+    background-color: #323232 !important; /* All toast types */
+}
