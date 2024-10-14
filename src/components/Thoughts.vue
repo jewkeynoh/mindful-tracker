@@ -4,6 +4,10 @@ import Thought from '@/components/Thought.vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
 import Card from './Card.vue';
+import { useToast } from 'vue-toastification';
+import DeleteModal from '@/components/DeleteModal.vue'; // Import DeleteModal
+
+const toast = useToast();
 
 const props = defineProps({
     initialThoughts: {
@@ -16,13 +20,15 @@ const props = defineProps({
 const state = reactive({
     thoughts: [],
     isLoading: true,
-    openDropdownId: null // Track which dropdown is open
+    openDropdownId: null,
+    isDeleteModalVisible: false, // State for delete modal visibility
+    currentThoughtId: null // Track the id of the thought to delete
 });
 
 // Function to fetch thoughts from the API
 const fetchThoughts = async () => {
     try {
-        const response = await axios.get('http://localhost:5000/thoughts'); // Update the URL if necessary
+        const response = await axios.get('api/thoughts'); // Update the URL if necessary
         // Sort the thoughts by created_at in descending order
         state.thoughts = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     } catch (error) {
@@ -32,10 +38,21 @@ const fetchThoughts = async () => {
     }
 };
 
+// Function to delete a thought
+const deleteThought = async (thoughtId) => {
+    try {
+        await axios.delete(`api/thoughts/${thoughtId}`);
+        state.thoughts = state.thoughts.filter(thought => thought.id !== thoughtId);
+        toast.success('Thought deleted successfully!');
+    } catch (error) {
+        console.error('Error deleting thought', error);
+        toast.error('Error deleting thought: ' + (error.response?.data?.message || 'Unknown error'));
+    }
+};
+
 // Load existing thoughts from props if available
 onMounted(() => {
     if (props.initialThoughts.length > 0) {
-        // Add the existing thoughts to the state and sort them
         state.thoughts = [...props.initialThoughts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
     fetchThoughts(); // Fetch thoughts from the API
@@ -43,8 +60,19 @@ onMounted(() => {
 
 // Function to toggle dropdown state
 const toggleDropdown = (id) => {
-    // If the clicked dropdown is already open, close it, else open the clicked one
     state.openDropdownId = state.openDropdownId === id ? null : id;
+};
+
+// Function to show the delete modal
+const showDeleteModal = (thoughtId) => {
+    state.isDeleteModalVisible = true;
+    state.currentThoughtId = thoughtId; // Store the current thought ID
+};
+
+// Function to confirm delete action
+const confirmDelete = () => {
+    deleteThought(state.currentThoughtId);
+    state.currentThoughtId = null; // Reset the current thought ID
 };
 
 // Watch for new thoughts added
@@ -56,7 +84,6 @@ watch(
         );
 
         if (newThoughts.length) {
-            // Combine existing thoughts with the new thoughts and sort them
             state.thoughts = [...state.thoughts, ...newThoughts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         }
     },
@@ -84,7 +111,7 @@ onBeforeUnmount(() => {
 
 <template>
     <section>
-        <Card mb="lg:mb-12 mb-8">
+        <Card mb="lg:mb-12 mb-8" border="lg:border lg:border-gray-300">
             <ol id="thoughtsList" class="relative border-s border-gray-200">
                 <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
                     <PulseLoader color="#1e40af" />
@@ -97,6 +124,7 @@ onBeforeUnmount(() => {
                         :thought="thought"
                         :isDropdownOpen="state.openDropdownId === thought.id"
                         :toggleDropdown="() => toggleDropdown(thought.id)"
+                        :showDeleteModal="showDeleteModal"
                     />
                 </div>
                 <div v-else class="text-gray-400 text-sm text-center">
@@ -104,5 +132,12 @@ onBeforeUnmount(() => {
                 </div>
             </ol>
         </Card>
+
+        <!-- Delete Modal -->
+        <DeleteModal 
+            :isVisible="state.isDeleteModalVisible" 
+            :onDelete="confirmDelete" 
+            :onClose="() => { state.isDeleteModalVisible = false; }" 
+        />
     </section>
 </template>

@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router';
 import { ref } from 'vue';
-import Form from '@/components/Form.vue';
+import FormThought from '@/components/FormThought.vue';
 import { defineEmits } from 'vue';
 import Modal from '@/components/Modal.vue'
 
@@ -58,15 +58,12 @@ const handleThoughtAdded = (newThought) => {
                         d="M5 12h14m-7 7V5" />
                 </svg>
             </button>
-            <RouterLink class="flex flex-col items-center justify-center">
-                <svg :class="[isActiveLink('/settings') ? 'text-blue-800' : 'text-gray-300', 'w-6 h-6']"
-                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd"
-                        d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z"
-                        clip-rule="evenodd" />
+            <RouterLink to="/thoughts" class="flex flex-col items-center justify-center">
+                <svg :class="[isActiveLink('/saved') ? 'text-blue-800' : 'text-gray-300', 'w-6 h-6']" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M5 9a7 7 0 1 1 8 6.93V21a1 1 0 1 1-2 0v-5.07A7.001 7.001 0 0 1 5 9Zm5.94-1.06A1.5 1.5 0 0 1 12 7.5a1 1 0 1 0 0-2A3.5 3.5 0 0 0 8.5 9a1 1 0 0 0 2 0c0-.398.158-.78.44-1.06Z" clip-rule="evenodd"/>
                 </svg>
             </RouterLink>
-            <RouterLink class="flex flex-col items-center justify-center">
+            <RouterLink to="/profile" class="flex flex-col items-center justify-center">
                 <svg :class="[isActiveLink('/profile') ? 'text-blue-800' : 'text-gray-300', 'w-6 h-6']"
                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
@@ -104,12 +101,9 @@ const handleThoughtAdded = (newThought) => {
             </svg>
         </button>
         
-        <RouterLink to="/thoughts" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
-            <svg :class="[isActiveLink('/thoughts') ? 'text-blue-800' : 'text-gray-300', 'w-8 h-8 hover:text-blue-800 transition-colors duration-500']"
-                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd"
-                    d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z"
-                    clip-rule="evenodd" />
+        <RouterLink to="/saved" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
+            <svg :class="[isActiveLink('/saved') ? 'text-blue-800' : 'text-gray-300', 'w-8 h-8 hover:text-blue-800 transition-colors duration-500']" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M5 9a7 7 0 1 1 8 6.93V21a1 1 0 1 1-2 0v-5.07A7.001 7.001 0 0 1 5 9Zm5.94-1.06A1.5 1.5 0 0 1 12 7.5a1 1 0 1 0 0-2A3.5 3.5 0 0 0 8.5 9a1 1 0 0 0 2 0c0-.398.158-.78.44-1.06Z" clip-rule="evenodd"/>
             </svg>
         </RouterLink>
         <RouterLink to="/profile" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
@@ -124,6 +118,6 @@ const handleThoughtAdded = (newThought) => {
 
     <!-- Modal -->
     <Modal :isOpen="isModalOpen" title="Add a Thought" @update:isOpen="isModalOpen = $event">
-        <Form @thoughtAdded="handleThoughtAdded" />
+        <FormThought @thoughtAdded="handleThoughtAdded" />
     </Modal>
 </template>

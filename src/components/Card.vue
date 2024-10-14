@@ -9,12 +9,16 @@ defineProps({
     mb: {
         type: String,
         default: 'mb-8'
+    },
+    border: {
+        type: String,
+        default: 'border border-gray-300'
     }
 });
 </script>
 
 <template>
-    <div :class="`${bg} ${mb} border border-gray-300 lg:rounded-3xl p-8 shadow-sm`">
+    <div :class="`${bg} ${mb} ${border} lg:rounded-3xl p-8 shadow-sm`">
         <slot></slot>
     </div>
 </template>

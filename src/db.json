@@ -1,4 +1,13 @@
 {
+  "users": [
+    {
+      "name": "Mico Dioquino",
+      "email": "micodioquino17@gmail.com",
+      "bio": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "updated_at": "2024-10-14 14:36:43",
+      "id": "1"
+    }
+  ],
   "thoughts": [
     {
       "id": "0693",

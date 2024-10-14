@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from '@/views/HomeView.vue';
 import AnalyticsView from '@/views/AnalyticsView.vue';
+import ProfileView from "@/views/ProfileView.vue";
 import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
             path: '/analytics',
             name: 'analytics',
             component: AnalyticsView
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: ProfileView
         },
         {
             path: '/:catchAll(.*)',

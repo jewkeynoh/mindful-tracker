@@ -3,8 +3,9 @@ import { defineProps, ref, computed } from 'vue';
 
 const props = defineProps({
     thought: Object,
-    isDropdownOpen: Boolean, // Prop for dropdown state
-    toggleDropdown: Function   // Prop for toggling dropdown
+    isDropdownOpen: Boolean,
+    toggleDropdown: Function,
+    showDeleteModal: Function // Prop for showing delete modal
 });
 
 const showFullThought = ref(false);
@@ -44,8 +45,9 @@ const truncatedThought = computed(() => {
                     class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg z-10 border border-gray-300"
                 >
                     <ul class="py-1 text-sm text-gray-700">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Edit</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Delete</a></li>
+                        <li>
+                            <a @click.prevent="showDeleteModal(thought.id)" class="block px-4 py-2 hover:bg-gray-100 text-red-500 font-semibold cursor-pointer">Delete</a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onMounted } from 'vue';
+import { reactive, ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
 
@@ -34,6 +34,11 @@ const emojis = {
 };
 
 const textareaRef = ref(null);
+
+// Computed property to check if the button should be disabled
+const isButtonDisabled = computed(() => {
+    return !(form.thought && form.category && form.intensityLevel);
+});
 
 const handleEmojiClick = (value) => {
     form.intensityLevel = value;
@@ -119,7 +124,6 @@ onMounted(() => {
         autoResize(textareaRef.value);
     }
 });
-
 </script>
 
 <template>
@@ -129,8 +133,8 @@ onMounted(() => {
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="thought">Describe Your Thought</label>
                 <textarea v-model="form.thought" id="thought" name="thought" :class="[ 
-                    'resize-none w-full p-3 rounded-3xl focus:outline-none focus:ring-0 focus:border-none', 
-                    errors.thought ? 'border border-red-600' : 'border-none' 
+                    'resize-none w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300', 
+                    errors.thought ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
                 ]" rows="5" placeholder="What's on your mind?"
                     @input="autoResize($event.target); errors.thought = ''">
                 </textarea>
@@ -140,8 +144,8 @@ onMounted(() => {
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="category">Select a Category</label>
                 <select v-model="form.category" id="category" name="category" :class="[ 
-                    'w-full p-3 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300', 
-                    errors.category ? 'border border-red-600 focus:ring-red-600' : 'border border-gray-200' 
+                    'w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300', 
+                    errors.category ? 'border border-red-600 focus:border-red-600' : 'border border-gray-200' 
                 ]" aria-required="true" @change="errors.category = ''">
                     <option value="" disabled>Select a category</option>
                     <option value="Work">Work</option>
@@ -166,7 +170,13 @@ onMounted(() => {
             </div>
         </div>
         <div class="flex items-center justify-end p-5 mb-2">
-            <button type="submit" class="w-full border border-gray-300 transition ease-in-out duration-150 active:scale-95 font-bold focus:outline-none rounded-3xl text-sm px-5 py-2.5 text-center">Log Thought</button>
+            <button type="submit" :disabled="isButtonDisabled" 
+                :class="[
+                    isButtonDisabled ? 'text-gray-300 border border-gray-100 cursor-not-allowed' : 'border border-gray-300'
+                ]" 
+                class="w-full transition ease-in-out duration-150 active:scale-95 font-bold focus:outline-none rounded-3xl text-sm px-5 py-2.5 text-center">
+                Log Thought
+            </button>
         </div>
     </form>
 </template>
