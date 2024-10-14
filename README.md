@@ -1,29 +1,49 @@
-# mindful-tracker
+# Mindful Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+**Mindful Tracker** is an interactive web application designed to help users capture and reflect on their thoughts, emotions, and experiences. The app provides a user-friendly interface for logging entries, categorizing thoughts, and tracking emotional intensity levels over time.
 
-## Recommended IDE Setup
+### Key Features:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Thought Logging:** Effortlessly record your thoughts with an intuitive input system, ensuring you never miss an important moment or feeling.
+- **Categorization:** Organize your thoughts into customizable categories for easier tracking and reflection.
+- **Emotional Intensity Tracking:** Rate the intensity of your thoughts, allowing for a deeper understanding of your emotional landscape.
+- **Responsive Design:** Enjoy a seamless experience across devices, whether you're on a desktop, tablet, or mobile phone.
+- **Dropdown Menu for Actions:** Quickly access editing and deleting options with a convenient dropdown menu, enhancing user experience without cluttering the interface.
+- **Dynamic Interaction:** Engage with your thoughts through an interactive interface, designed to promote mindfulness and self-reflection.
 
-## Customize configuration
+**Mindful Tracker** encourages users to cultivate mindfulness, enhance emotional intelligence, and foster personal growth through regular reflection on their thoughts and feelings.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
-```sh
-npm install
-```
+To set up and run this web application, follow these steps:
 
-### Compile and Hot-Reload for Development
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
 
-```sh
-npm run dev
-```
+2. **Install dependencies**:
+   Make sure you have Node.js and npm installed. Run the following command to install the required packages:
+   ```bash
+   npm install
+   ```
 
-### Compile and Minify for Production
+3. **Run the development server**:
+   Start the development server to run the application locally:
+   ```bash
+   npm run dev
+   ```
 
-```sh
-npm run build
-```
+4. **Run the backend server**:
+   In another terminal, navigate to your backend directory (if applicable) and run:
+   ```bash
+   npm run server
+   ```
+
+5. **Access the application**:
+   Open your web browser and go to `http://localhost:5173` (or the appropriate port) to view the application in action.
+
+### Note:
+- Ensure that your backend server is running if your application depends on API calls.
