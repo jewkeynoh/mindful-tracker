@@ -131,7 +131,7 @@ onMounted(() => {
                     id="name"
                     type="text"
                     :class="[ 
-                        'w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                        'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
                         errors.name ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
                     ]"
                     placeholder="Enter your name"
@@ -147,7 +147,7 @@ onMounted(() => {
                     id="email"
                     type="email"
                     :class="[ 
-                        'w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                        'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
                         errors.email ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
                     ]"
                     placeholder="Enter your email"
@@ -159,7 +159,7 @@ onMounted(() => {
             <div>
                 <label class="block text-sm font-semibold mb-2" for="bio">Bio</label>
                 <textarea v-model="form.bio" id="bio" :class="[ 
-                    'resize-none w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                    'resize-none w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
                     errors.bio ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
                 ]" rows="2" placeholder="Write a bio..."
                     @input="autoResize($event.target); errors.bio = ''">

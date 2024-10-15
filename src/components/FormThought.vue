@@ -134,7 +134,7 @@ onMounted(() => {
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="thought">Describe Your Thought</label>
                 <textarea v-model="form.thought" id="thought" name="thought" :class="[ 
-                    'resize-none w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300', 
+                    'resize-none w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300', 
                     errors.thought ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
                 ]" rows="5" placeholder="What's on your mind?"
                     @input="autoResize($event.target); errors.thought = ''">
@@ -145,7 +145,7 @@ onMounted(() => {
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="category">Select a Category</label>
                 <select v-model="form.category" id="category" name="category" :class="[ 
-                    'w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300', 
+                    'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300', 
                     errors.category ? 'border border-red-600 focus:border-red-600' : 'border border-gray-200' 
                 ]" aria-required="true" @change="errors.category = ''">
                     <option value="" disabled>Select a category</option>
