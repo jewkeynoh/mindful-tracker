@@ -1,5 +1,9 @@
 <script setup>
 import { defineProps, ref, computed } from 'vue';
+import axios from 'axios'; // Make sure axios is installed for HTTP requests
+import { useToast } from 'vue-toastification';
+
+const toast = useToast(); // Initialize the toast
 
 const props = defineProps({
     thought: Object,
@@ -8,6 +12,8 @@ const props = defineProps({
     showDeleteModal: Function,
     searchTerm: String,
 });
+
+const emit = defineEmits(['thoughtUpdated']); // Define the emit event
 
 const showFullThought = ref(false);
 
@@ -39,17 +45,35 @@ const highlightedThought = computed(() => {
 const toggleFullThought = () => {
     showFullThought.value = !showFullThought.value;
 };
+
+// Method to toggle the saved state
+const toggleSaveThought = async () => {
+    const newSavedState = props.thought.saved === 1 ? 0 : 1; // Toggle saved state
+    const updatedThought = { ...props.thought, saved: newSavedState }; // Create a new thought object with updated saved state
+
+    try {
+        // Update the thought in the database using JSON server
+        await axios.put(`api/thoughts/${props.thought.id}`, updatedThought); // Adjust the URL as needed
+        // Optionally, you could emit an event to notify the parent component
+        emit('thoughtUpdated', updatedThought); // Uncomment if needed
+
+        toast.success('Thought saved successfully!');
+    } catch (error) {
+        console.error('Error updating thought:', error);
+        toast.error('Error saving thought: ' + (error.response?.data?.message || 'Unknown error'));
+    }
+};
 </script>
 
 <template>
     <li class="mb-10 ms-6">
         <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white">{{ thought.emoji }}</span>
         <div class="flex justify-between mb-2">
-            <h3 class="max-w-xs text-lg font-semibold text-gray-900 line-clamp-1">{{ truncatedThought }}</h3>
+            <h3 class="max-w-xs text-lg font-semibold text-gray-900 line-clamp-1 max-h-6">{{ thought.thought }}</h3>
             <div class="relative">
                 <svg 
                     @click="toggleDropdown"
-                    class="w-6 h-6 text-gray-800 cursor-pointer" 
+                    class="w-10 h-10 text-gray-800 cursor-pointer transition ease-in-out duration-150 active:scale-90 hover:bg-gray-100 rounded-full p-2" 
                     aria-hidden="true" 
                     aria-expanded="isDropdownOpen.toString()"
                     xmlns="http://www.w3.org/2000/svg" 
@@ -60,20 +84,22 @@ const toggleFullThought = () => {
                 >
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
                 </svg>
-                <div 
-                    v-if="isDropdownOpen" 
-                    class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg z-10 border border-gray-300"
-                >
-                    <ul class="py-1 text-sm text-gray-700">
+
+                <div v-if="isDropdownOpen" class="z-10 absolute font-semibold right-0 bg-white divide-y divide-gray-200 rounded-xl shadow w-44 border border-gray-300">
+                    <ul class="py-2 px-1 text-sm" aria-labelledby="dropdownDividerButton">
                         <li>
                             <a 
-                                @click.prevent="showDeleteModal(thought.id)" 
-                                class="block px-4 py-2 hover:bg-gray-100 text-red-500 font-semibold cursor-pointer"
+                                href="#" 
+                                class="block px-4 py-2 hover:bg-gray-100 transition ease-in-out duration-150 active:scale-95 rounded-lg" 
+                                @click.prevent="toggleSaveThought" 
                             >
-                                Delete
+                                {{ thought.saved === 1 ? 'Unsave' : 'Save' }}
                             </a>
                         </li>
                     </ul>
+                    <div class="py-2 px-1">
+                        <a @click.prevent="showDeleteModal(thought.id)" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-100 cursor-pointer transition ease-in-out duration-150 active:scale-95 rounded-lg">Delete</a>
+                    </div>
                 </div>
             </div>
         </div>

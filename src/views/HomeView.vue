@@ -21,7 +21,6 @@ const filteredThoughts = computed(() => {
 
 // Method to handle search term update
 const updateSearchTerm = (term) => {
-    console.log('Search Term:', term); // Logging the search term for debugging
     searchTerm.value = term;
 };
 </script>

@@ -18,7 +18,8 @@ const props = defineProps({
     searchTerm: {
         type: String,
         default: ''
-    }
+    },
+    saved: Boolean
 });
 
 const state = reactive({
@@ -32,7 +33,8 @@ const state = reactive({
 // Function to fetch thoughts from the API
 const fetchThoughts = async () => {
     try {
-        const response = await axios.get('api/thoughts'); // Update the URL if necessary
+        const savedQuery = props.saved ? '?saved=1' : '';
+        const response = await axios.get('api/thoughts' + savedQuery); // Update the URL if necessary
         state.thoughts = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     } catch (error) {
         console.error('Error fetching thoughts', error);
@@ -101,6 +103,15 @@ watch(
     { immediate: true, deep: true }
 );
 
+// Handle thought updates from child components
+const handleThoughtUpdate = (updatedThought) => {
+    const index = state.thoughts.findIndex(thought => thought.id === updatedThought.id);
+    if (index !== -1) {
+        // Update the thought in the local state
+        state.thoughts.splice(index, 1, updatedThought);
+    }
+};
+
 // Handle outside click to close dropdown
 const handleClickOutside = (event) => {
     const dropdown = event.target.closest('.relative');
@@ -137,6 +148,7 @@ onBeforeUnmount(() => {
                         :toggleDropdown="() => toggleDropdown(thought.id)"
                         :showDeleteModal="showDeleteModal"
                         :searchTerm="props.searchTerm"
+                        @thoughtUpdated="handleThoughtUpdate"
                     />
                 </div>
                 <div v-else class="text-gray-400 text-sm text-center">

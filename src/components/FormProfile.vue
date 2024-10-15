@@ -123,7 +123,7 @@ onMounted(() => {
 
 <template>
     <form @submit.prevent="handleSubmit" aria-label="Update Your Profile">
-        <div class="p-5 space-y-4 text-gray-900">
+        <div class="p-5 pb-0 text-gray-900">
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="name">Full Name</label>
                 <input
@@ -131,7 +131,7 @@ onMounted(() => {
                     id="name"
                     type="text"
                     :class="[ 
-                        'w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                        'w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
                         errors.name ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
                     ]"
                     placeholder="Enter your name"
@@ -147,7 +147,7 @@ onMounted(() => {
                     id="email"
                     type="email"
                     :class="[ 
-                        'w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                        'w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
                         errors.email ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
                     ]"
                     placeholder="Enter your email"
@@ -156,10 +156,10 @@ onMounted(() => {
                 <p v-if="errors.email" class="text-red-600 text-sm mt-1">{{ errors.email }}</p>
             </div>
 
-            <div class="mb-5">
+            <div>
                 <label class="block text-sm font-semibold mb-2" for="bio">Bio</label>
                 <textarea v-model="form.bio" id="bio" :class="[ 
-                    'resize-none w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                    'resize-none w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
                     errors.bio ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
                 ]" rows="2" placeholder="Write a bio..."
                     @input="autoResize($event.target); errors.bio = ''">
@@ -175,7 +175,7 @@ onMounted(() => {
                 :class="[ 
                     isButtonDisabled ? 'text-gray-300 bg-blue-200 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900 transition ease-in-out duration-150 active:scale-95'
                 ]"
-                class="w-full text-white font-bold focus:outline-none rounded-3xl text-sm px-5 py-2.5 text-center"
+                class="w-full text-white font-bold focus:outline-none rounded-xl text-sm px-5 py-4 text-center"
             >
                 Update Profile
             </button>

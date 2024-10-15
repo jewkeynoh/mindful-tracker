@@ -86,6 +86,7 @@ const handleSubmit = async () => {
         category: form.category,
         intensityLevel: form.intensityLevel,
         emoji: emojis[form.intensityLevel],
+        saved: 0,
         created_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
     };
 
@@ -133,7 +134,7 @@ onMounted(() => {
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="thought">Describe Your Thought</label>
                 <textarea v-model="form.thought" id="thought" name="thought" :class="[ 
-                    'resize-none w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300', 
+                    'resize-none w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300', 
                     errors.thought ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
                 ]" rows="5" placeholder="What's on your mind?"
                     @input="autoResize($event.target); errors.thought = ''">
@@ -144,7 +145,7 @@ onMounted(() => {
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="category">Select a Category</label>
                 <select v-model="form.category" id="category" name="category" :class="[ 
-                    'w-full p-3 ps-5 rounded-3xl focus:outline-none focus:ring-0 focus:border-gray-300', 
+                    'w-full p-3 ps-5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300', 
                     errors.category ? 'border border-red-600 focus:border-red-600' : 'border border-gray-200' 
                 ]" aria-required="true" @change="errors.category = ''">
                     <option value="" disabled>Select a category</option>
@@ -157,7 +158,7 @@ onMounted(() => {
             </div>
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2">Rate the Intensity</label>
-                <div class="emoji-rating flex flex-wrap lg:justify-between justify-stretch"
+                <div class="emoji-rating flex flex-wrap lg:justify-between md:justify-stretch"
                     aria-labelledby="intensity-label">
                     <span v-for="value in 10" :key="value" :data-value="value" @click="handleEmojiClick(value)"
                         :class="{ 'active': form.intensityLevel == value }"
@@ -170,11 +171,12 @@ onMounted(() => {
             </div>
         </div>
         <div class="flex items-center justify-end p-5 mb-2">
-            <button type="submit" :disabled="isButtonDisabled" 
-                :class="[
-                    isButtonDisabled ? 'text-gray-300 border border-gray-100 cursor-not-allowed' : 'border border-gray-300'
-                ]" 
-                class="w-full transition ease-in-out duration-150 active:scale-95 font-bold focus:outline-none rounded-3xl text-sm px-5 py-2.5 text-center">
+            <button type="submit" 
+                :disabled="isButtonDisabled"
+                :class="[ 
+                    isButtonDisabled ? 'text-gray-300 bg-blue-200 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900 transition ease-in-out duration-150 active:scale-95'
+                ]"
+                class="w-full text-white font-bold focus:outline-none rounded-xl text-sm px-5 py-4 text-center">
                 Log Thought
             </button>
         </div>

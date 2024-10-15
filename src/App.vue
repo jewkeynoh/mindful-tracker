@@ -1,8 +1,15 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { RouterView } from 'vue-router';
 import Navigation from './components/Navigation.vue';
 import Footer from '@/components/Footer.vue';
+import Login from './components/Login.vue';
+import useAuth from '@/useAuth';
+
+const { isAuthenticated, logout } = useAuth();
+
+// Use computed to track the authentication state reactively
+const isUserAuthenticated = computed(() => isAuthenticated.value);
 
 // Global thoughts state
 const thoughts = ref([]);
@@ -15,12 +22,17 @@ const addThought = (newThought) => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center">
-    <div class="w-full mx-auto max-w-2xl">
-      <RouterView :thoughts="thoughts" />
-      <Navigation @thoughtAdded="addThought" />
+  <div class="min-h-screen flex flex-col">
+    <div class="w-full mx-auto max-w-2xl flex-grow flex flex-col justify-center">
+      <Login v-if="!isUserAuthenticated" />
+
+      <div v-else>
+        <button @click="logout" class="mb-4">Logout</button>
+        <RouterView :thoughts="thoughts" />
+        <Navigation @thoughtAdded="addThought" />
+      </div>
     </div>
-  </div>
   
-  <Footer />
+    <Footer />
+  </div>
 </template>
