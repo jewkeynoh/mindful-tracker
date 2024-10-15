@@ -14,6 +14,7 @@ const useAuth = () => {
         try {
             const response = await axios.get('api/users'); // Update your JSON Server URL
             const users = response.data;
+
             const foundUser = users.find(u => u.username === username && u.password === password);
 
             if (foundUser) {

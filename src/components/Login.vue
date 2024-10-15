@@ -13,7 +13,7 @@ const form = reactive({
 });
 
 const handleLogin = async () => {
-    const success = await login(form.username, form.password);
+    const success = await login(form.username.trim(), form.password.trim());
     if (success) {
         router.push('/'); // Redirect to the home page or any other authenticated route
     }
@@ -24,7 +24,6 @@ const isButtonDisabled = computed(() => {
     return !(form.username.trim() && form.password.trim());
 });
 
-console.log(form.username.trim())
 </script>
 
 <template>
