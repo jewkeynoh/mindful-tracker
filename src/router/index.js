@@ -3,7 +3,7 @@ import HomeView from '@/views/HomeView.vue';
 import AnalyticsView from '@/views/AnalyticsView.vue';
 import ProfileView from "@/views/ProfileView.vue";
 import NotFoundView from '@/views/NotFoundView.vue';
-import SavedView from "@/views/SavedView.vue";
+import SavedView from '@/views/SavedView.vue';
 import LoginView from '@/views/LoginView.vue';
 import useAuth from '@/useAuth';
 
@@ -21,7 +21,6 @@ const router = createRouter({
     ]
 });
 
-// Navigation guard to protect routes
 router.beforeEach((to, from, next) => {
     if (to.path !== '/login' && !isAuthenticated.value) {
         next('/login');

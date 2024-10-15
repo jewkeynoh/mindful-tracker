@@ -1,12 +1,11 @@
-// src/useAuth.js
 import { ref } from 'vue';
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
 
 const toast = useToast();
-const user = ref(null);
-const isAuthenticated = ref(false);
+const user = ref(JSON.parse(localStorage.getItem('user')) || null);
+const isAuthenticated = ref(!!user.value);
 
 const useAuth = () => {
     const router = useRouter();
@@ -20,6 +19,7 @@ const useAuth = () => {
             if (foundUser) {
                 user.value = foundUser;
                 isAuthenticated.value = true;
+                localStorage.setItem('user', JSON.stringify(foundUser));
                 toast.success('You are successfully logged in.');
 
                 // Redirect to the home page after successful login
@@ -36,8 +36,9 @@ const useAuth = () => {
     const logout = () => {
         user.value = null;
         isAuthenticated.value = false;
+        localStorage.removeItem('user');
         toast.info('You have logged out.');
-        router.push('/login'); // Redirect to login page after logout
+        router.push('/login');
     };
 
     return { user, isAuthenticated, login, logout };
