@@ -129,7 +129,7 @@ onMounted(() => {
 <template>
     <form @submit.prevent="handleSubmit" aria-label="Log Your Thoughts">
 
-        <div class="p-5 space-y-4 text-gray-900">
+        <div class="p-5 text-gray-900">
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="thought">Describe Your Thought</label>
                 <textarea v-model="form.thought" id="thought" name="thought" :class="[ 

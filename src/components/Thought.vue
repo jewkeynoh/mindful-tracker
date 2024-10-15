@@ -5,7 +5,8 @@ const props = defineProps({
     thought: Object,
     isDropdownOpen: Boolean,
     toggleDropdown: Function,
-    showDeleteModal: Function
+    showDeleteModal: Function,
+    searchTerm: String,
 });
 
 const showFullThought = ref(false);
@@ -17,6 +18,21 @@ const truncatedThought = computed(() => {
         return thoughtText.length > 90 ? thoughtText.substring(0, 90) + '...' : thoughtText;
     }
     return thoughtText;
+});
+
+// Compute highlighted thought text
+const highlightedThought = computed(() => {
+    const thoughtText = props.thought.thought;
+    if (!props.searchTerm) return truncatedThought.value; // If no search term, return truncated thought
+
+    // Escape special characters in the search term to prevent regex errors
+    const escapedSearchTerm = props.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedSearchTerm})`, 'gi'); // Create a regex for highlighting
+
+    // Highlight matched text
+    const highlighted = thoughtText.replace(regex, '<span style="background:yellow;">$1</span>');
+
+    return highlighted; // Return highlighted text
 });
 
 // Toggle showFullThought state
@@ -31,7 +47,6 @@ const toggleFullThought = () => {
         <div class="flex justify-between mb-2">
             <h3 class="max-w-xs text-lg font-semibold text-gray-900 line-clamp-1">{{ truncatedThought }}</h3>
             <div class="relative">
-                <!-- Dropdown button -->
                 <svg 
                     @click="toggleDropdown"
                     class="w-6 h-6 text-gray-800 cursor-pointer" 
@@ -45,7 +60,6 @@ const toggleFullThought = () => {
                 >
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
                 </svg>
-                <!-- Dropdown menu -->
                 <div 
                     v-if="isDropdownOpen" 
                     class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg z-10 border border-gray-300"
@@ -70,9 +84,8 @@ const toggleFullThought = () => {
         <p 
             class="mb-4 text-sm font-normal text-gray-900 cursor-pointer"
             @click="toggleFullThought"
-        >
-            {{ truncatedThought }}
-        </p>
+            v-html="highlightedThought" 
+        ></p>
         <div class="flex justify-between">
             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{ thought.category }}</span>
         </div>

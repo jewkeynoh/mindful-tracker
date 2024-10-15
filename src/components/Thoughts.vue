@@ -136,6 +136,7 @@ onBeforeUnmount(() => {
                         :isDropdownOpen="state.openDropdownId === thought.id"
                         :toggleDropdown="() => toggleDropdown(thought.id)"
                         :showDeleteModal="showDeleteModal"
+                        :searchTerm="props.searchTerm"
                     />
                 </div>
                 <div v-else class="text-gray-400 text-sm text-center">
