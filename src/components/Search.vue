@@ -27,8 +27,9 @@ const clearSearchTerm = () => {
             <input
                 type="text"
                 id="voice-search"
-                :value="searchTerm"
+                v-model="searchTerm"
                 @input="updateSearchTerm"
+                @keydown.enter="emitSearch('search', searchTerm.value)"
                 class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-none block w-full ps-10 p-2.5"
                 placeholder="Search Thoughts..."
             />
