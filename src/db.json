@@ -56,6 +56,30 @@
       "intensityLevel": 5,
       "emoji": "🙁",
       "created_at": "2024-10-14 09:30:17"
+    },
+    {
+      "id": "3311",
+      "thought": "fdsafd",
+      "category": "Relationships",
+      "intensityLevel": 3,
+      "emoji": "😐",
+      "created_at": "2024-10-15 10:17:02"
+    },
+    {
+      "id": "cbde",
+      "thought": "fdsafd",
+      "category": "Work",
+      "intensityLevel": 2,
+      "emoji": "🙂",
+      "created_at": "2024-10-15 10:18:38"
+    },
+    {
+      "id": "a6de",
+      "thought": "hahahaha",
+      "category": "Personal",
+      "intensityLevel": 5,
+      "emoji": "🙁",
+      "created_at": "2024-10-15 10:18:45"
     }
   ]
 }
