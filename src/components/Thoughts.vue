@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, defineProps, watch, onMounted, onBeforeUnmount } from 'vue';
+import { reactive, defineProps, watch, onMounted, onBeforeUnmount, computed } from 'vue';
 import Thought from '@/components/Thought.vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
@@ -14,7 +14,11 @@ const props = defineProps({
         type: Array,
         default: () => []
     },
-    limit: Number
+    limit: Number,
+    searchTerm: {
+        type: String,
+        default: ''
+    }
 });
 
 const state = reactive({
@@ -37,17 +41,13 @@ const fetchThoughts = async () => {
     }
 };
 
-// Function to delete a thought
-const deleteThought = async (thoughtId) => {
-    try {
-        await axios.delete(`api/thoughts/${thoughtId}`);
-        state.thoughts = state.thoughts.filter(thought => thought.id !== thoughtId);
-        toast.success('Thought deleted successfully!');
-    } catch (error) {
-        console.error('Error deleting thought', error);
-        toast.error('Error deleting thought: ' + (error.response?.data?.message || 'Unknown error'));
-    }
-};
+// Pag-filter ng thoughts batay sa searchTerm
+const filteredThoughts = computed(() => {
+    if (!props.searchTerm) return state.thoughts; // If no search term, return all thoughts
+    return state.thoughts.filter(thought => 
+        thought.thought.toLowerCase().includes(props.searchTerm.toLowerCase())
+    );
+});
 
 // Load existing thoughts from props if available
 onMounted(() => {
@@ -72,6 +72,18 @@ const showDeleteModal = (thoughtId) => {
 const confirmDelete = () => {
     deleteThought(state.currentThoughtId);
     state.currentThoughtId = null;
+};
+
+// Function to delete a thought
+const deleteThought = async (thoughtId) => {
+    try {
+        await axios.delete(`api/thoughts/${thoughtId}`);
+        state.thoughts = state.thoughts.filter(thought => thought.id !== thoughtId);
+        toast.success('Thought deleted successfully!');
+    } catch (error) {
+        console.error('Error deleting thought', error);
+        toast.error('Error deleting thought: ' + (error.response?.data?.message || 'Unknown error'));
+    }
 };
 
 // Watch for new thoughts added
@@ -116,9 +128,9 @@ onBeforeUnmount(() => {
                     <PulseLoader color="#1e40af" />
                 </div>
 
-                <div v-if="state.thoughts.length">
+                <div v-if="filteredThoughts.length">
                     <Thought
-                        v-for="thought in state.thoughts"
+                        v-for="thought in filteredThoughts"
                         :key="thought.id"
                         :thought="thought"
                         :isDropdownOpen="state.openDropdownId === thought.id"

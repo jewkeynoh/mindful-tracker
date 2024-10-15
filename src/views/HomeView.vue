@@ -13,10 +13,10 @@ const searchTerm = ref('');
 
 // Computed property to filter thoughts based on the search term
 const filteredThoughts = computed(() => {
-    if (!searchTerm.value) return props.thoughts; // If no search term, return all thoughts
-    return props.thoughts.filter(thought =>
-        thought.text.toLowerCase().includes(searchTerm.value.toLowerCase())
-    );
+    if (!searchTerm.value) return props.thoughts;
+    return props.thoughts.filter(thought => {
+        return thought.thought.toLowerCase().includes(searchTerm.value.toLowerCase());
+    });
 });
 
 // Method to handle search term update
@@ -29,6 +29,6 @@ const updateSearchTerm = (term) => {
 <template>
   <Search @search="updateSearchTerm" />
   <div class="lg:pt-5">
-    <Thoughts :initialThoughts="filteredThoughts" />
+    <Thoughts :initialThoughts="filteredThoughts" :searchTerm="searchTerm" />
   </div>
 </template>
