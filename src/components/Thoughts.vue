@@ -5,7 +5,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
 import Card from './Card.vue';
 import { useToast } from 'vue-toastification';
-import DeleteModal from '@/components/DeleteModal.vue'; // Import DeleteModal
+import DeleteModal from '@/components/DeleteModal.vue';
 
 const toast = useToast();
 
@@ -21,15 +21,14 @@ const state = reactive({
     thoughts: [],
     isLoading: true,
     openDropdownId: null,
-    isDeleteModalVisible: false, // State for delete modal visibility
-    currentThoughtId: null // Track the id of the thought to delete
+    isDeleteModalVisible: false,
+    currentThoughtId: null
 });
 
 // Function to fetch thoughts from the API
 const fetchThoughts = async () => {
     try {
         const response = await axios.get('api/thoughts'); // Update the URL if necessary
-        // Sort the thoughts by created_at in descending order
         state.thoughts = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     } catch (error) {
         console.error('Error fetching thoughts', error);
@@ -55,7 +54,7 @@ onMounted(() => {
     if (props.initialThoughts.length > 0) {
         state.thoughts = [...props.initialThoughts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
-    fetchThoughts(); // Fetch thoughts from the API
+    fetchThoughts();
 });
 
 // Function to toggle dropdown state
@@ -66,13 +65,13 @@ const toggleDropdown = (id) => {
 // Function to show the delete modal
 const showDeleteModal = (thoughtId) => {
     state.isDeleteModalVisible = true;
-    state.currentThoughtId = thoughtId; // Store the current thought ID
+    state.currentThoughtId = thoughtId;
 };
 
 // Function to confirm delete action
 const confirmDelete = () => {
     deleteThought(state.currentThoughtId);
-    state.currentThoughtId = null; // Reset the current thought ID
+    state.currentThoughtId = null;
 };
 
 // Watch for new thoughts added
@@ -94,7 +93,7 @@ watch(
 const handleClickOutside = (event) => {
     const dropdown = event.target.closest('.relative');
     if (!dropdown) {
-        state.openDropdownId = null; // Close dropdown if clicking outside
+        state.openDropdownId = null;
     }
 };
 

@@ -7,7 +7,7 @@ const emitSearch = defineEmits(['search']);
 
 const updateSearchTerm = (event) => {
     searchTerm.value = event.target.value;
-    emitSearch(searchTerm.value); 
+    emitSearch(searchTerm.value);
 };
 
 const clearSearchTerm = () => {
@@ -27,12 +27,10 @@ const clearSearchTerm = () => {
             <input
                 type="text"
                 id="voice-search"
-                v-model="searchTerm"
                 @input="updateSearchTerm"
                 class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-none block w-full ps-10 p-2.5"
                 placeholder="Search Thoughts..."
             />
-            
             <button
                 type="button"
                 @click="clearSearchTerm"

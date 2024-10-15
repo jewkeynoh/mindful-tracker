@@ -5,19 +5,24 @@ const props = defineProps({
     thought: Object,
     isDropdownOpen: Boolean,
     toggleDropdown: Function,
-    showDeleteModal: Function // Prop for showing delete modal
+    showDeleteModal: Function
 });
 
 const showFullThought = ref(false);
 
 // Compute truncated thought text
 const truncatedThought = computed(() => {
-    let thought = props.thought.thought;
+    const thoughtText = props.thought.thought;
     if (!showFullThought.value) {
-        thought = thought.length > 90 ? thought.substring(0, 90) + '...' : thought;
+        return thoughtText.length > 90 ? thoughtText.substring(0, 90) + '...' : thoughtText;
     }
-    return thought;
+    return thoughtText;
 });
+
+// Toggle showFullThought state
+const toggleFullThought = () => {
+    showFullThought.value = !showFullThought.value;
+};
 </script>
 
 <template>
@@ -31,6 +36,7 @@ const truncatedThought = computed(() => {
                     @click="toggleDropdown"
                     class="w-6 h-6 text-gray-800 cursor-pointer" 
                     aria-hidden="true" 
+                    aria-expanded="isDropdownOpen.toString()"
                     xmlns="http://www.w3.org/2000/svg" 
                     width="24" 
                     height="24" 
@@ -46,7 +52,12 @@ const truncatedThought = computed(() => {
                 >
                     <ul class="py-1 text-sm text-gray-700">
                         <li>
-                            <a @click.prevent="showDeleteModal(thought.id)" class="block px-4 py-2 hover:bg-gray-100 text-red-500 font-semibold cursor-pointer">Delete</a>
+                            <a 
+                                @click.prevent="showDeleteModal(thought.id)" 
+                                class="block px-4 py-2 hover:bg-gray-100 text-red-500 font-semibold cursor-pointer"
+                            >
+                                Delete
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -56,8 +67,11 @@ const truncatedThought = computed(() => {
             <time class="block mb-4 text-xs font-normal leading-none">Created on {{ thought.created_at }}</time>
             <div class="block mb-4 text-xs leading-none">Intensity Level <span class="font-semibold">{{ thought.intensityLevel }}</span></div>
         </div>
-        <p class="mb-4 text-sm font-normal text-gray-900">
-            {{ thought.thought }}
+        <p 
+            class="mb-4 text-sm font-normal text-gray-900 cursor-pointer"
+            @click="toggleFullThought"
+        >
+            {{ truncatedThought }}
         </p>
         <div class="flex justify-between">
             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{ thought.category }}</span>
