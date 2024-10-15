@@ -76,7 +76,7 @@ const handleThoughtAdded = (newThought) => {
 
     <!-- Sidebar navigation -->
     <div class="hidden md:flex fixed left-0 top-0 w-16 h-full flex flex-col items-center justify-center space-y-4 pl-5">
-        <RouterLink to="/" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
+        <RouterLink to="/" class="flex items-center justify-center transition ease-in-out duration-150 active:scale-90 h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
             <svg :class="[isActiveLink('/') ? 'text-blue-800' : 'text-gray-300', 'w-8 h-8 hover:text-blue-800 transition-colors duration-500']"
                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd"
@@ -84,7 +84,7 @@ const handleThoughtAdded = (newThought) => {
                     clip-rule="evenodd" />
             </svg>
         </RouterLink>
-        <RouterLink to="/analytics" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
+        <RouterLink to="/analytics" class="flex items-center justify-center transition ease-in-out duration-150 active:scale-90 h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
             <svg :class="[isActiveLink('/analytics') ? 'text-blue-800' : 'text-gray-300', 'w-8 h-8 hover:text-blue-800 transition-colors duration-500']"
                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -93,7 +93,7 @@ const handleThoughtAdded = (newThought) => {
         </RouterLink>
 
         <!-- Modal trigger -->
-        <button @click="openModal" class="flex items-center justify-center h-16 w-16 group bg-gray-100 rounded-3xl">
+        <button @click="openModal" class="flex items-center justify-center transition ease-in-out duration-150 active:scale-90 h-16 w-16 group bg-gray-100 rounded-3xl">
             <svg class="text-gray-400 w-8 h-8 hover:text-blue-800 transition-colors duration-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -101,12 +101,12 @@ const handleThoughtAdded = (newThought) => {
             </svg>
         </button>
         
-        <RouterLink to="/saved" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
+        <RouterLink to="/saved" class="flex items-center justify-center transition ease-in-out duration-150 active:scale-90 h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
             <svg :class="[isActiveLink('/saved') ? 'text-blue-800' : 'text-gray-300', 'w-8 h-8 hover:text-blue-800 transition-colors duration-500']" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M5 9a7 7 0 1 1 8 6.93V21a1 1 0 1 1-2 0v-5.07A7.001 7.001 0 0 1 5 9Zm5.94-1.06A1.5 1.5 0 0 1 12 7.5a1 1 0 1 0 0-2A3.5 3.5 0 0 0 8.5 9a1 1 0 0 0 2 0c0-.398.158-.78.44-1.06Z" clip-rule="evenodd"/>
             </svg>
         </RouterLink>
-        <RouterLink to="/profile" class="flex items-center justify-center h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
+        <RouterLink to="/profile" class="flex items-center justify-center transition ease-in-out duration-150 active:scale-90 h-16 w-16 group hover:bg-gray-100 hover:rounded-3xl">
             <svg :class="[isActiveLink('/profile') ? 'text-blue-800' : 'text-gray-300', 'w-8 h-8 hover:text-blue-800 transition-colors duration-500']"
                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd"
