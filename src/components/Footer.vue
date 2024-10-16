@@ -1,23 +1,30 @@
+<script setup>
+import { RouterLink } from 'vue-router';
+
+</script>
+
 <template>
-    <footer class="pb-6 text-center">
-        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-400 sm:text-center">© 2024 <a href="#" class="hover:underline">Mindful
-                    Tracker</a>.  Made with 🤎
-            </span> 
-            <ul class="flex flex-wrap items-center hidden lg:flex mt-3 text-sm font-medium text-gray-400 sm:mt-0">
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline">Contact</a>
-                </li>
-            </ul>
+    <footer class="lg:pb-6 pb-14 text-sm text-gray-400">
+        <div class="w-full mx-auto max-w-screen-xl p-4 lg:flex lg:justify-between text-center">
+            <div>© 2024 <RouterLink to="/" class="font-semibold hover:underline">Mindful
+                    Tracker</RouterLink>.  Made with 💙
+            </div> 
+            <div class="text-center">
+                <ul class="flex flex-wrap items-center justify-center font-medium lg:mt-0 mt-2">
+                    <li>
+                        <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </footer>
 </template>

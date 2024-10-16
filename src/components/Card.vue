@@ -18,7 +18,7 @@ defineProps({
 </script>
 
 <template>
-    <div :class="`${bg} ${mb} ${border} lg:rounded-3xl p-8 shadow-sm`">
+    <div :class="`${bg} ${mb} ${border} lg:rounded-3xl p-8 lg:shadow-sm`">
         <slot></slot>
     </div>
 </template>

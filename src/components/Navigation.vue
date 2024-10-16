@@ -84,6 +84,7 @@ onBeforeUnmount(() => {
     <div class="fixed top-0 left-0 w-full bg-white h-16 border-b border-gray-300 md:hidden flex justify-between p-5">
         <RouterLink to="/" class="flex items-center">
             <Logo height="w-8" width="w-8"/>
+            <span class="ms-2 font-bold">Mindful Tracker</span>
         </RouterLink>
         <div class="flex items-center">
             <button 
@@ -92,7 +93,7 @@ onBeforeUnmount(() => {
                 aria-hidden="true" 
                 :aria-expanded="state.openDropdownMobileId === 'dropdown-mobile'"
                 class="flex items-center justify-end transition ease-in-out duration-150 active:scale-90 h-16 w-16 group">
-                <svg class="text-gray-300 w-7 h-7 hover:text-blue-800 transition-colors duration-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="text-gray-300 w-7 h-7 hover:text-blue-800 transition-colors duration-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z"/>
                 </svg>
             </button>

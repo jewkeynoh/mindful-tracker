@@ -29,14 +29,14 @@ const isButtonDisabled = computed(() => {
 <template>
     <section class="bg-white">
         <div class="flex flex-col items-center justify-center lg:px-6 mx-auto md:h-screen">
-            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
-                <Logo height="h-24" width="w-24"/>
-            </a>
+            <RouterLink to="/">
+                <Logo height="h-20" width="w-20"/>
+            </RouterLink>
             <div
-                class="w-full bg-white lg:rounded-3xl lg:border lg:border-gray-300 lg:shadow-sm md:mt-0 sm:max-w-md xl:p-0">
+                class="w-full bg-white md:mt-0 sm:max-w-md xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1
-                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl lg:text-left text-center">
+                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center">
                         Sign in to your account
                     </h1>
                     <form @submit.prevent="handleLogin" class="space-y-4 md:space-y-6">
@@ -56,14 +56,14 @@ const isButtonDisabled = computed(() => {
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input id="remember" aria-describedby="remember" type="checkbox"
-                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
+                                        class="w-4 h-4 border border-gray-300 text-blue-800 rounded bg-gray-50 focus:ring-0 cursor-pointer">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="remember" class="text-gray-500">Remember me</label>
+                                    <label for="remember" class="text-gray-400 cursor-pointer">Remember me</label>
                                 </div>
                             </div>
                             <a href="#"
-                                class="text-sm font-medium text-primary-600 hover:underline">Forgot
+                                class="text-sm font-medium text-blue-800 hover:underline">Forgot
                                 password?</a>
                         </div>
                         <button type="submit"
@@ -73,9 +73,9 @@ const isButtonDisabled = computed(() => {
                             ]"
                             class="w-full text-white focus:outline-none rounded-xl text-sm  px-5 py-4 text-center">Sign
                             in</button>
-                        <p class="text-sm font-light text-gray-500 lg:text-left text-center">
-                            Don’t have an account yet? <a href="#"
-                                class="font-medium text-primary-600 hover:underline">Sign up</a>
+                        <p class="text-sm font-light text-gray-400 text-center">
+                            Don't have an account yet? <a href="#"
+                                class="font-medium text-blue-800 hover:underline">Sign up</a>
                         </p>
                     </form>
                 </div>

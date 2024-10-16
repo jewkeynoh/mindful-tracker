@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
     <section>
         <Card mb="lg:mb-12 mb-8" border="lg:border lg:border-gray-300">
             <ol id="thoughtsList" class="relative border-s border-gray-200">
-                <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+                <div v-if="state.isLoading" class="text-center text-gray-400 py-6">
                     <PulseLoader color="#1e40af" />
                 </div>
 
