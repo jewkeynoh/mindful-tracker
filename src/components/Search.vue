@@ -17,7 +17,7 @@ const clearSearchTerm = () => {
 </script>
 
 <template>
-    <div class="pt-5 pr-5 pl-5">
+    <div class="lg:pt-5 pt-24 pr-5 pl-5">
         <div class="relative w-full">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">

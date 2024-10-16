@@ -103,14 +103,22 @@ watch(
     { immediate: true, deep: true }
 );
 
-// Handle thought updates from child components
 const handleThoughtUpdate = (updatedThought) => {
-    const index = state.thoughts.findIndex(thought => thought.id === updatedThought.id);
-    if (index !== -1) {
-        // Update the thought in the local state
-        state.thoughts.splice(index, 1, updatedThought);
+    if (updatedThought.saved === 0) {
+        // If thought is unsaved, filter it out
+        state.thoughts = state.thoughts.filter(thought => thought.id !== updatedThought.id);
+    } else {
+        const index = state.thoughts.findIndex(thought => thought.id === updatedThought.id);
+        if (index !== -1) {
+            // Update the thought in the local state
+            state.thoughts.splice(index, 1, updatedThought);
+        } else {
+            // If the thought is saved again, add it back to the list if needed
+            state.thoughts.push(updatedThought);
+        }
     }
 };
+
 
 // Handle outside click to close dropdown
 const handleClickOutside = (event) => {

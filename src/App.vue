@@ -33,7 +33,6 @@ onMounted(() => {
     <div class="w-full mx-auto max-w-2xl flex-grow flex flex-col justify-center">
 
       <div v-if="isUserAuthenticated">
-        <button @click="logout" class="mb-4">Logout</button>
         <RouterView :thoughts="thoughts" />
         <Navigation @thoughtAdded="addThought" />
       </div>

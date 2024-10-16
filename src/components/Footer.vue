@@ -4,7 +4,7 @@
             <span class="text-sm text-gray-400 sm:text-center">© 2024 <a href="#" class="hover:underline">Mindful
                     Tracker</a>.  Made with 🤎
             </span> 
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-400 sm:mt-0">
+            <ul class="flex flex-wrap items-center hidden lg:flex mt-3 text-sm font-medium text-gray-400 sm:mt-0">
                 <li>
                     <a href="#" class="hover:underline me-4 md:me-6">About</a>
                 </li>

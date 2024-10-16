@@ -134,7 +134,7 @@ const recentThoughts = computed(() => {
 
 
 <template>
-    <div class="lg:pt-12">
+    <div class="pt-12">
         <Card mb="lg:mb-12 mb-8">
             <h1 class="lg:text-4xl text-3xl font-bold mb-2 text-center text-blue-800">Analytics Overview</h1>
             <p class="text-center mb-6">Manage your thoughts and gain insights to better understand your patterns.</p>

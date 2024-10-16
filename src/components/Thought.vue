@@ -1,9 +1,9 @@
 <script setup>
 import { defineProps, ref, computed } from 'vue';
-import axios from 'axios'; // Make sure axios is installed for HTTP requests
+import axios from 'axios';
 import { useToast } from 'vue-toastification';
 
-const toast = useToast(); // Initialize the toast
+const toast = useToast();
 
 const props = defineProps({
     thought: Object,
@@ -13,7 +13,7 @@ const props = defineProps({
     searchTerm: String,
 });
 
-const emit = defineEmits(['thoughtUpdated']); // Define the emit event
+const emit = defineEmits(['thoughtUpdated']);
 
 const showFullThought = ref(false);
 
@@ -29,16 +29,12 @@ const truncatedThought = computed(() => {
 // Compute highlighted thought text
 const highlightedThought = computed(() => {
     const thoughtText = props.thought.thought;
-    if (!props.searchTerm) return truncatedThought.value; // If no search term, return truncated thought
+    if (!props.searchTerm) return truncatedThought.value;
 
-    // Escape special characters in the search term to prevent regex errors
     const escapedSearchTerm = props.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(${escapedSearchTerm})`, 'gi'); // Create a regex for highlighting
+    const regex = new RegExp(`(${escapedSearchTerm})`, 'gi');
 
-    // Highlight matched text
-    const highlighted = thoughtText.replace(regex, '<span style="background:yellow;">$1</span>');
-
-    return highlighted; // Return highlighted text
+    return thoughtText.replace(regex, '<span style="background:yellow;">$1</span>');
 });
 
 // Toggle showFullThought state
@@ -48,16 +44,18 @@ const toggleFullThought = () => {
 
 // Method to toggle the saved state
 const toggleSaveThought = async () => {
-    const newSavedState = props.thought.saved === 1 ? 0 : 1; // Toggle saved state
-    const updatedThought = { ...props.thought, saved: newSavedState }; // Create a new thought object with updated saved state
+    const newSavedState = props.thought.saved === 1 ? 0 : 1;
+    const updatedThought = { ...props.thought, saved: newSavedState };
 
     try {
-        // Update the thought in the database using JSON server
         await axios.put(`api/thoughts/${props.thought.id}`, updatedThought); // Adjust the URL as needed
-        // Optionally, you could emit an event to notify the parent component
-        emit('thoughtUpdated', updatedThought); // Uncomment if needed
+        emit('thoughtUpdated', updatedThought); // Emit the updated thought
 
-        toast.success('Thought saved successfully!');
+        if (newSavedState === 1) {
+            toast.success('Thought saved successfully!');
+        } else {
+            toast.success('Thought unsaved successfully!');
+        }
     } catch (error) {
         console.error('Error updating thought:', error);
         toast.error('Error saving thought: ' + (error.response?.data?.message || 'Unknown error'));
