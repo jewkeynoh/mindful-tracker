@@ -122,7 +122,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <form @submit.prevent="handleSubmit" aria-label="Update Your Profile">
+    <div>
+        <form @submit.prevent="handleSubmit" aria-label="Update Your Profile">
         <div class="p-5 pb-0 text-gray-900">
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="name">Full Name</label>
@@ -181,4 +182,5 @@ onMounted(() => {
             </button>
         </div>
     </form>
+    </div>
 </template>

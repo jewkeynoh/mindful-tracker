@@ -15,34 +15,37 @@ const thoughts = ref([]);
 
 // Method to handle adding a new thought
 const addThought = (newThought) => {
-    thoughts.value.push(newThought);
-    thoughts.value.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  thoughts.value.push(newThought);
+  thoughts.value.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 };
 
 // If the page reloads, check if the user is still authenticated from localStorage
 onMounted(() => {
-    if (!isUserAuthenticated.value) {
-        // Automatically log out if there's no user in localStorage
-        logout();
-    }
+  if (!isUserAuthenticated.value) {
+    // Automatically log out if there's no user in localStorage
+    logout();
+  }
 });
 </script>
 
 <template>
   <div class="min-h-screen flex flex-col">
-    <div class="w-full mx-auto max-w-2xl flex-grow flex flex-col justify-center">
+    <div class="w-full mx-auto flex-grow flex flex-col justify-center">
+      <Navigation v-if="isUserAuthenticated" @thoughtAdded="addThought" />
 
-      <div v-if="isUserAuthenticated">
-        <RouterView :thoughts="thoughts" />
-        <Navigation @thoughtAdded="addThought" />
-      </div>
+      <main class="flex-grow flex items-center justify-center">
 
-      <div v-else> 
-        <Login />
-      </div>
+        <div v-if="isUserAuthenticated">
+          <RouterView :thoughts="thoughts" />
+        </div>
+
+        <div v-else>
+          <Login />
+        </div>
+
+      </main>
 
     </div>
-  
     <Footer />
   </div>
 </template>

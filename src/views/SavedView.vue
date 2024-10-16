@@ -8,19 +8,21 @@ const searchTerm = ref('');
 const saved = ref(true);
 
 const props = defineProps({
-    thoughts: Array,
+  thoughts: Array,
 });
 
 // Method to handle search term update
 const updateSearchTerm = (term) => {
-    searchTerm.value = term;
+  searchTerm.value = term;
 };
 
 </script>
 
 <template>
-  <Search @search="updateSearchTerm" />
-  <div class="lg:pt-5">
-    <Thoughts :searchTerm="searchTerm" :saved="saved" />
-  </div>
+  <section class="flex items-center justify-center lg:px-8">
+    <div class="lg:w-screen flex flex-col justify-center lg:px-6 mx-auto w-full lg:max-w-3xl">
+      <Search @search="updateSearchTerm" />
+      <Thoughts :searchTerm="searchTerm" :saved="saved" class="pt-6"/>
+    </div>
+  </section>
 </template>

@@ -21,7 +21,7 @@ const closeModal = () => {
 
 <template>
     <!-- Main modal -->
-    <div v-if="isOpen" tabindex="-1" aria-hidden="true" class="fixed inset-0 flex items-center justify-center z-60 bg-black bg-opacity-50">
+    <div v-if="isOpen" tabindex="-1" aria-hidden="true" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
     <div class="relative lg:p-5 w-full lg:h-auto h-screen max-h-full lg:max-w-2xl lg:max-h-full">
         <div class="relative bg-white lg:rounded-3xl h-full lg:px-2">
             <div class="flex items-center justify-between p-5 border-b rounded-t">

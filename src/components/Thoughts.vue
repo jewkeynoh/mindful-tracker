@@ -46,7 +46,7 @@ const fetchThoughts = async () => {
 // Pag-filter ng thoughts batay sa searchTerm
 const filteredThoughts = computed(() => {
     if (!props.searchTerm) return state.thoughts; // If no search term, return all thoughts
-    return state.thoughts.filter(thought => 
+    return state.thoughts.filter(thought =>
         thought.thought.toLowerCase().includes(props.searchTerm.toLowerCase())
     );
 });
@@ -140,24 +140,18 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section>
-        <Card mb="lg:mb-12 mb-8" border="lg:border lg:border-gray-300">
-            <ol id="thoughtsList" class="relative border-s border-gray-200">
-                <div v-if="state.isLoading" class="text-center text-gray-400 py-6">
+    <div class="w-full">
+        <Card mb="lg:mb-12" border="lg:border lg:border-gray-300">
+            <ol id="thoughtsList" :class="[state.isLoading ? 'border-s border-gray-200' : 'relative']">
+                <div v-if="state.isLoading" class="text-center py-6">
                     <PulseLoader color="#1e40af" />
                 </div>
 
                 <div v-if="filteredThoughts.length">
-                    <Thought
-                        v-for="thought in filteredThoughts"
-                        :key="thought.id"
-                        :thought="thought"
+                    <Thought v-for="thought in filteredThoughts" :key="thought.id" :thought="thought"
                         :isDropdownOpen="state.openDropdownId === thought.id"
-                        :toggleDropdown="() => toggleDropdown(thought.id)"
-                        :showDeleteModal="showDeleteModal"
-                        :searchTerm="props.searchTerm"
-                        @thoughtUpdated="handleThoughtUpdate"
-                    />
+                        :toggleDropdown="() => toggleDropdown(thought.id)" :showDeleteModal="showDeleteModal"
+                        :searchTerm="props.searchTerm" @thoughtUpdated="handleThoughtUpdate" />
                 </div>
                 <div v-else class="text-gray-400 text-sm text-center">
                     No recent entries. Log your thoughts to keep track!
@@ -166,10 +160,7 @@ onBeforeUnmount(() => {
         </Card>
 
         <!-- Delete Modal -->
-        <DeleteModal 
-            :isVisible="state.isDeleteModalVisible" 
-            :onDelete="confirmDelete" 
-            :onClose="() => { state.isDeleteModalVisible = false; }" 
-        />
-    </section>
+        <DeleteModal :isVisible="state.isDeleteModalVisible" :onDelete="confirmDelete"
+            :onClose="() => { state.isDeleteModalVisible = false; }" />
+    </div>
 </template>
