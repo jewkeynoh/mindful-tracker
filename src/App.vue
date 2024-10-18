@@ -31,21 +31,22 @@ onMounted(() => {
 <template>
   <div class="min-h-screen flex flex-col">
     <div class="w-full mx-auto flex-grow flex flex-col justify-center">
-      <Navigation v-if="isUserAuthenticated" @thoughtAdded="addThought" />
+      <header>
+        <Navigation v-if="isUserAuthenticated" @thoughtAdded="addThought" />
+      </header>
 
       <main class="flex-grow flex items-center justify-center">
+        <section class="flex items-center justify-center">
+          <div v-if="isUserAuthenticated">
+            <RouterView :thoughts="thoughts" />
+          </div>
 
-        <div v-if="isUserAuthenticated">
-          <RouterView :thoughts="thoughts" />
-        </div>
-
-        <div v-else>
-          <Login />
-        </div>
-
+          <div v-else>
+            <Login />
+          </div>
+        </section>
       </main>
 
     </div>
-    <Footer />
   </div>
 </template>

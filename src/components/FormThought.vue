@@ -129,7 +129,6 @@ onMounted(() => {
 
 <template>
     <form @submit.prevent="handleSubmit" aria-label="Log Your Thoughts">
-
         <div class="p-5 text-gray-900">
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2" for="thought">Describe Your Thought</label>
@@ -158,7 +157,7 @@ onMounted(() => {
             </div>
             <div class="mb-5">
                 <label class="block text-sm font-semibold mb-2">Rate the Intensity</label>
-                <div class="emoji-rating flex flex-wrap lg:justify-between md:justify-stretch"
+                <div class="emoji-rating flex flex-wrap justify-center lg:justify-between gap-2"
                     aria-labelledby="intensity-label">
                     <span v-for="value in 10" :key="value" :data-value="value" @click="handleEmojiClick(value)"
                         :class="{ 'active': form.intensityLevel == value }"
@@ -170,7 +169,7 @@ onMounted(() => {
                 <p v-if="errors.intensityLevel" class="text-red-600 text-sm mt-1">{{ errors.intensityLevel }}</p>
             </div>
         </div>
-        <div class="flex items-center justify-end p-5 mb-2">
+        <div class="flex items-center justify-end px-5 mb-2">
             <button type="submit" 
                 :disabled="isButtonDisabled"
                 :class="[ 

@@ -1,11 +1,12 @@
 <script setup>
-import FormProfile from '@/components/FormProfile.vue';
+import Card from '@/components/Card.vue';
+import Profile from '@/components/Profile.vue';
 </script>
 
 <template>
-    <section class="w-screen flex items-center justify-center">
-        <div class="flex flex-col justify-center mx-auto w-full max-w-xl">
-            <FormProfile />
-        </div>
-    </section>
+    <div class="pt-20">
+        <Card padding="p-6" customClass="w-screen max-w-2xl w-full">
+            <Profile />
+        </Card>
+    </div>
 </template>

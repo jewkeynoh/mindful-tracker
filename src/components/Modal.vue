@@ -1,40 +1,59 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
-    isOpen: {
-        type: Boolean,
-        required: true,
-    },
-    title: {
-        type: String,
-        default: 'Modal Title',
-    },
+    modelValue: Boolean,
+    title: String,
 });
 
-const emit = defineEmits(['update:isOpen']);
+const emit = defineEmits(['update:modelValue']);
 
-const closeModal = () => {
-    emit('update:isOpen', false);
-};
+const isVisible = ref(props.modelValue);
+
+watch(() => props.modelValue, (newValue) => {
+    isVisible.value = newValue;
+});
+
+function closeModal() {
+    emit('update:modelValue', false);
+}
+
+function closeOnOverlay(event) {
+    if (event.target === event.currentTarget) {
+        closeModal();
+    }
+}
+
+// Close modal on 'Escape' key press
+function handleEscape(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+}
+
+onMounted(() => {
+    window.addEventListener('keydown', handleEscape);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', handleEscape);
+});
 </script>
 
 <template>
-    <!-- Main modal -->
-    <div v-if="isOpen" tabindex="-1" aria-hidden="true" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-    <div class="relative lg:p-5 w-full lg:h-auto h-screen max-h-full lg:max-w-2xl lg:max-h-full">
-        <div class="relative bg-white lg:rounded-3xl h-full lg:px-2">
-            <div class="flex items-center justify-between p-5 border-b rounded-t">
-                <h3 class="text-xl font-semibold text-gray-900">
-                    {{ title }}
-                </h3>
-                <span @click="closeModal" class="cursor-pointer transition ease-in-out duration-150 active:scale-95">Cancel</span>
-            </div>
-            <div class="overflow-y-auto h-full">
-                <slot></slot>
+    <div v-if="isVisible" @click="closeOnOverlay" class="fixed z-10 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="relative w-full lg:max-w-2xl lg:h-auto h-screen max-h-full overflow-y-auto" @click.stop>
+            <div class="relative bg-white lg:rounded-3xl h-full shadow-md pb-5">
+                <div class="flex items-center justify-between p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">{{ title }}</h3>
+                    <span @click="closeModal" class="cursor-pointer transition ease-in-out duration-150 active:scale-95">
+                        Cancel
+                    </span>
+                </div>
+                <div class="overflow-y-auto max-h-[calc(100vh-4rem)]">
+                    <slot></slot>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 </template>

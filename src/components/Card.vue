@@ -2,23 +2,35 @@
 import { defineProps } from 'vue';
 
 defineProps({
+    customClass: {
+        type: String,
+        default: ''
+    },
     bg: {
         type: String,
         default: 'bg-white'
     },
-    mb: {
-        type: String,
-        default: 'mb-8'
-    },
     border: {
         type: String,
-        default: 'border border-gray-300'
+        default: 'lg:border lg:border-gray-300 lg:rounded-t-3xl'
+    },
+    shadow: {
+        type: String,
+        default: 'lg:shadow-sm'
+    },
+    screen: {
+        type: String,
+        default: 'h-screen h-full'
+    },
+    padding: {
+        type: String,
+        default: 'p-6'
     }
 });
 </script>
 
 <template>
-    <div :class="`${bg} ${mb} ${border} lg:rounded-3xl p-8 lg:shadow-sm`">
+    <div :class="`${customClass} ${bg} ${border} ${padding} ${shadow} ${screen}`">
         <slot></slot>
     </div>
 </template>

@@ -65,30 +65,33 @@ const toggleSaveThought = async () => {
 
 <template>
     <li class="mb-10 ms-6">
-        <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white">{{ thought.emoji }}</span>
-        <div class="flex justify-between mb-2">
-            <h3 class="max-w-xs text-lg font-semibold text-gray-900 line-clamp-1 max-h-6">{{ thought.thought }}</h3>
+        <span class="absolute flex justify-center items-center w-8 h-8 bg-blue-100 rounded-full -start-4 ring-8 ring-white">{{ thought.emoji }}</span>
+        <div class="flex justify-between items-start mb-3">
+            <h3 class="flex-1 max-w-sm text-lg font-semibold text-gray-900 line-clamp-1 pr-4">{{ thought.thought }}</h3>
             <div class="relative">
-                <svg 
+                <button
                     @click="toggleDropdown"
-                    class="w-10 h-10 text-gray-800 cursor-pointer transition ease-in-out duration-150 active:scale-90 hover:bg-gray-100 rounded-full p-2" 
-                    aria-hidden="true" 
-                    aria-expanded="isDropdownOpen.toString()"
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    fill="none" 
-                    viewBox="0 0 24 24"
-                >
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
-                </svg>
+                    id="dropdown-thought-button"
+                    class="flex items-center justify-center w-8 h-8 text-gray-800 transition transform hover:bg-gray-100 rounded-full p-1">
+                    <svg 
+                        class="w-6 h-6 text-gray-800" 
+                        aria-hidden="true" 
+                        aria-expanded="isDropdownOpen.toString()"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24" 
+                        fill="none" 
+                        viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+                    </svg>
+                </button>
 
-                <div v-if="isDropdownOpen" class="z-10 absolute font-semibold right-0 bg-white divide-y divide-gray-200 rounded-xl shadow w-44 border border-gray-300">
-                    <ul class="py-2 px-1 text-sm" aria-labelledby="dropdownDividerButton">
+                <div v-if="isDropdownOpen" class="z-10 absolute font-semibold right-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-md w-44 border border-gray-300">
+                    <ul class="py-1 text-sm" aria-labelledby="dropdownDividerButton">
                         <li>
                             <a 
                                 href="#" 
-                                class="block px-4 py-2 hover:bg-gray-100 transition ease-in-out duration-150 active:scale-95 rounded-lg" 
+                                class="block px-4 py-2 hover:bg-gray-50 transition ease-in-out duration-150 active:scale-95 rounded" 
                                 @click.prevent="toggleSaveThought" 
                             >
                                 {{ thought.saved === 1 ? 'Unsave' : 'Save' }}
@@ -96,22 +99,21 @@ const toggleSaveThought = async () => {
                         </li>
                     </ul>
                     <div class="py-2 px-1">
-                        <a @click.prevent="showDeleteModal(thought.id)" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-100 cursor-pointer transition ease-in-out duration-150 active:scale-95 rounded-lg">Delete</a>
+                        <a @click.prevent="showDeleteModal(thought.id)" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-50 cursor-pointer transition ease-in-out duration-150 active:scale-95 rounded">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex justify-between text-gray-400">
-            <time class="block mb-4 text-xs font-normal leading-none">Created on {{ thought.created_at }}</time>
-            <div class="block mb-4 text-xs leading-none">Intensity Level <span class="font-semibold">{{ thought.intensityLevel }}</span></div>
+        <div class="flex justify-between font-medium text-sm text-gray-500 mb-3 -mt-3">
+            <time class="text-gray-400 leading-none">{{ thought.created_at }}</time>
         </div>
         <p 
-            class="mb-4 text-sm font-normal text-gray-900 cursor-pointer"
+            class="mb-3 text-sm font-normal text-gray-700 cursor-pointer"
             @click="toggleFullThought"
             v-html="highlightedThought" 
         ></p>
         <div class="flex justify-between">
-            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{ thought.category }}</span>
+            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">{{ thought.category }}</span>
         </div>
     </li>
 </template>

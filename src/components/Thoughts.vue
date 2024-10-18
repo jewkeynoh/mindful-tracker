@@ -140,9 +140,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="w-full">
-        <Card mb="lg:mb-12" border="lg:border lg:border-gray-300">
-            <ol id="thoughtsList" :class="[state.isLoading ? 'border-s border-gray-200' : 'relative']">
+    <div class="lg:pt-6">
+        <Card>
+            <ol id="thoughtsList" class="border-l border-gray-200 relative">
                 <div v-if="state.isLoading" class="text-center py-6">
                     <PulseLoader color="#1e40af" />
                 </div>

@@ -134,116 +134,112 @@ const recentThoughts = computed(() => {
 
 
 <template>
-    <div class="w-full max-w-3xl">
-        <Card border="lg:border lg:border-gray-300">
-            <h1 class="lg:text-4xl text-3xl font-bold mb-2 text-center text-blue-800">Analytics Overview</h1>
-            <p class="text-center mb-6">Manage your thoughts and gain insights to better understand your
-                patterns.
-            </p>
+    <Card padding="p-6 pt-0" customClass="w-screen max-w-2xl w-full">
+        <h1 class="lg:text-4xl text-3xl font-bold mb-2 text-center text-blue-800">Analytics Overview</h1>
+        <p class="text-center mb-6">Manage your thoughts and gain insights to better understand your patterns.</p>
 
-            <div class="mb-6">
-                <label for="date-filter" class="block font-semibold mb-2">Filter by Date</label>
-                <select v-model="dateFilter" id="date-filter"
-                    class="w-full p-2 pl-4 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800">
-                    <option value="today">Today</option>
-                    <option value="yesterday">Yesterday</option>
-                    <option value="last7days">Last 7 Days</option>
-                    <option value="lastmonth">Last Month</option>
-                    <option value="lastyear">Last Year</option>
-                    <option value="custom">Custom Range</option>
-                </select>
+        <div class="mb-6">
+            <label for="date-filter" class="block font-semibold mb-2">Filter by Date</label>
+            <select v-model="dateFilter" id="date-filter"
+                class="w-full p-2 pl-4 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="last7days">Last 7 Days</option>
+                <option value="lastmonth">Last Month</option>
+                <option value="lastyear">Last Year</option>
+                <option value="custom">Custom Range</option>
+            </select>
 
-                <div v-if="dateFilter === 'custom'" class="mt-4">
-                    <label for="start-date" class="block text-sm font-medium mb-1">Start Date</label>
-                    <input type="date" id="start-date" v-model="customDateRange.start"
-                        class="w-full p-2 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800 mb-2" />
+            <div v-if="dateFilter === 'custom'" class="mt-4">
+                <label for="start-date" class="block text-sm font-medium mb-1">Start Date</label>
+                <input type="date" id="start-date" v-model="customDateRange.start"
+                    class="w-full p-2 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800 mb-2" />
 
-                    <label for="end-date" class="block text-sm font-medium mb-1">End Date</label>
-                    <input type="date" id="end-date" v-model="customDateRange.end"
-                        class="w-full p-2 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800" />
-                </div>
+                <label for="end-date" class="block text-sm font-medium mb-1">End Date</label>
+                <input type="date" id="end-date" v-model="customDateRange.end"
+                    class="w-full p-2 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800" />
             </div>
+        </div>
 
-            <div class="mb-6">
-                <h3 class="font-semibold pb-2">Overall Summary</h3>
-                <ul class="list-none">
-                    <li class="flex justify-between mb-1">
-                        <span>Total Thoughts Logged</span>
-                        <span class="font-medium">{{ grandTotalThoughts }}</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Average Intensity Level</span>
-                        <span class="font-medium">{{ totalAverageIntensity }}</span>
-                    </li>
-                </ul>
-            </div>
+        <div class="mb-6">
+            <h3 class="font-semibold pb-2">Overall Summary</h3>
+            <ul class="list-none">
+                <li class="flex justify-between mb-1">
+                    <span>Total Thoughts Logged</span>
+                    <span class="font-medium">{{ grandTotalThoughts }}</span>
+                </li>
+                <li class="flex justify-between">
+                    <span>Average Intensity Level</span>
+                    <span class="font-medium">{{ totalAverageIntensity }}</span>
+                </li>
+            </ul>
+        </div>
 
-            <div class="mb-6">
-                <h3 class="font-semibold pb-2">Total Entries</h3>
-                <h1 class="text-5xl font-bold">{{ totalThoughts }}</h1>
-            </div>
+        <div class="mb-6">
+            <h3 class="font-semibold pb-2">Total Entries</h3>
+            <h1 class="text-5xl font-bold">{{ totalThoughts }}</h1>
+        </div>
 
-            <div class="mb-6">
-                <h3 class="font-bold">Current Average Intensity</h3>
-                <div class="text-xs pb-2 text-gray-400">
-                    This average intensity level reflects the ratings you've given when logging your thoughts.
-                </div>
-                <h1 class="text-blue-800 text-5xl font-bold">{{ averageIntensity }}</h1>
+        <div class="mb-6">
+            <h3 class="font-bold">Current Average Intensity</h3>
+            <div class="text-xs pb-2 text-gray-400">
+                This average intensity level reflects the ratings you've given when logging your thoughts.
             </div>
+            <h1 class="text-blue-800 text-5xl font-bold">{{ averageIntensity }}</h1>
+        </div>
 
-            <div class="mb-6">
-                <h3 class="font-semibold pb-2">Intensity Breakdown</h3>
-                <ul class="list-none" v-if="Object.keys(intensityCounts).length">
-                    <li v-for="(count, intensity) in intensityCounts" :key="intensity" class="flex justify-between">
-                        <div class="mb-1">
-                            <span class="me-1">Intensity Level:</span>
-                            <span>{{ intensity }}</span>
-                        </div>
-                        <div class="mb-1">
-                            <span class="me-1">Occurrences:</span>
-                            <span>{{ count }}</span>
-                        </div>
-                    </li>
-                </ul>
-                <div v-else class="text-gray-400 text-sm">It's quiet here... Log your thoughts to see insights!
-                </div>
+        <div class="mb-6">
+            <h3 class="font-semibold pb-2">Intensity Breakdown</h3>
+            <ul class="list-none" v-if="Object.keys(intensityCounts).length">
+                <li v-for="(count, intensity) in intensityCounts" :key="intensity" class="flex justify-between">
+                    <div class="mb-1">
+                        <span class="me-1">Intensity Level:</span>
+                        <span>{{ intensity }}</span>
+                    </div>
+                    <div class="mb-1">
+                        <span class="me-1">Occurrences:</span>
+                        <span>{{ count }}</span>
+                    </div>
+                </li>
+            </ul>
+            <div v-else class="text-gray-400 text-sm">It's quiet here... Log your thoughts to see insights!
             </div>
+        </div>
 
-            <div class="mb-6">
-                <h3 class="font-semibold pb-2">Thought Categories Breakdown</h3>
-                <ul class="list-none" v-if="Object.keys(thoughtsByCategory).length">
-                    <li v-for="(count, category) in thoughtsByCategory" :key="category" class="flex justify-between">
-                        <span>{{ category }}:</span>
-                        <span class="font-medium">{{ count }}</span>
-                    </li>
-                </ul>
-                <div v-else class="text-gray-400 text-sm">No categories logged yet. Start tracking your
-                    thoughts!
-                </div>
+        <div class="mb-6">
+            <h3 class="font-semibold pb-2">Thought Categories Breakdown</h3>
+            <ul class="list-none" v-if="Object.keys(thoughtsByCategory).length">
+                <li v-for="(count, category) in thoughtsByCategory" :key="category" class="flex justify-between">
+                    <span>{{ category }}:</span>
+                    <span class="font-medium">{{ count }}</span>
+                </li>
+            </ul>
+            <div v-else class="text-gray-400 text-sm">No categories logged yet. Start tracking your
+                thoughts!
             </div>
+        </div>
 
-            <div class="mb-6">
-                <h3 class="font-semibold pb-2">Recent Entries</h3>
-                <ul class="list-none" v-if="recentThoughts.length">
-                    <li v-for="thought in recentThoughts" :key="thought.id" class="border-b py-2">
-                        <div class="mb-2">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{
-                                thought.category }}</span>
-                        </div>
-                        <span class="font-medium">{{ thought.thought }}</span>
-                    </li>
-                </ul>
-                <div v-else class="text-gray-400 text-sm">No recent entries. Log your thoughts to keep track!
-                </div>
+        <div class="mb-6">
+            <h3 class="font-semibold pb-2">Recent Entries</h3>
+            <ul class="list-none" v-if="recentThoughts.length">
+                <li v-for="thought in recentThoughts" :key="thought.id" class="border-b py-2">
+                    <div class="mb-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{
+                            thought.category }}</span>
+                    </div>
+                    <span class="font-medium">{{ thought.thought }}</span>
+                </li>
+            </ul>
+            <div v-else class="text-gray-400 text-sm">No recent entries. Log your thoughts to keep track!
             </div>
+        </div>
 
-            <div class="text-center pt-5">
-                <p class="text-gray-400">Keep adding your thoughts to gain deeper insights and track your
-                    progress.
-                </p>
+        <div class="text-center pt-5">
+            <div class="bg-green-100 p-5 rounded-lg text-sm outline-dashed outline-1 outline-green-500">
+                Keep adding your thoughts to gain deeper insights and track your progress.
             </div>
-        </Card>
-    </div>
+        </div>
+    </Card>
 </template>
 
 <style scoped>

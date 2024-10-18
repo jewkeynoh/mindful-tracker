@@ -26,10 +26,8 @@ const updateSearchTerm = (term) => {
 </script>
 
 <template>
-  <section class="flex items-center justify-center lg:px-8">
-    <div class="lg:w-screen flex flex-col justify-center lg:px-6 mx-auto w-full max-w-3xl">
-      <Search @search="updateSearchTerm" />
-      <Thoughts :initialThoughts="filteredThoughts" :searchTerm="searchTerm" class="lg:pt-6"/>
-    </div>
-  </section>
+  <div class="flex flex-col justify-center max-w-2xl">
+    <Search @search="updateSearchTerm" />
+    <Thoughts :initialThoughts="filteredThoughts" :searchTerm="searchTerm" />
+  </div>
 </template>

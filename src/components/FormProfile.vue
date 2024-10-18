@@ -124,63 +124,63 @@ onMounted(() => {
 <template>
     <div>
         <form @submit.prevent="handleSubmit" aria-label="Update Your Profile">
-        <div class="p-5 pb-0 text-gray-900">
-            <div class="mb-5">
-                <label class="block text-sm font-semibold mb-2" for="name">Full Name</label>
-                <input
-                    v-model="form.name"
-                    id="name"
-                    type="text"
+            <div class="p-5 pb-0 text-gray-900">
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold mb-2" for="name">Full Name</label>
+                    <input
+                        v-model="form.name"
+                        id="name"
+                        type="text"
+                        :class="[ 
+                            'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                            errors.name ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
+                        ]"
+                        placeholder="Enter your name"
+                        @input="errors.name = ''"
+                    />
+                    <p v-if="errors.name" class="text-red-600 text-sm mt-1">{{ errors.name }}</p>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold mb-2" for="email">Email Address</label>
+                    <input
+                        v-model="form.email"
+                        id="email"
+                        type="email"
+                        :class="[ 
+                            'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                            errors.email ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
+                        ]"
+                        placeholder="Enter your email"
+                        @input="errors.email = ''"
+                    />
+                    <p v-if="errors.email" class="text-red-600 text-sm mt-1">{{ errors.email }}</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2" for="bio">Bio</label>
+                    <textarea v-model="form.bio" id="bio" :class="[ 
+                        'resize-none w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
+                        errors.bio ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
+                    ]" rows="2" placeholder="Write a bio..."
+                        @input="autoResize($event.target); errors.bio = ''">
+                    </textarea>
+                    <p v-if="errors.bio" class="text-red-600 text-sm mt-1">{{ errors.bio }}</p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end p-5 mb-2">
+                <button
+                    type="submit"
+                    :disabled="isButtonDisabled"
                     :class="[ 
-                        'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
-                        errors.name ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
+                        isButtonDisabled ? 'text-gray-300 bg-blue-200 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900 transition ease-in-out duration-150 active:scale-95'
                     ]"
-                    placeholder="Enter your name"
-                    @input="errors.name = ''"
-                />
-                <p v-if="errors.name" class="text-red-600 text-sm mt-1">{{ errors.name }}</p>
+                    class="w-full text-white font-bold focus:outline-none rounded-xl text-sm px-5 py-4 text-center"
+                >
+                    Update Profile
+                </button>
             </div>
-
-            <div class="mb-5">
-                <label class="block text-sm font-semibold mb-2" for="email">Email Address</label>
-                <input
-                    v-model="form.email"
-                    id="email"
-                    type="email"
-                    :class="[ 
-                        'w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
-                        errors.email ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300'
-                    ]"
-                    placeholder="Enter your email"
-                    @input="errors.email = ''"
-                />
-                <p v-if="errors.email" class="text-red-600 text-sm mt-1">{{ errors.email }}</p>
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold mb-2" for="bio">Bio</label>
-                <textarea v-model="form.bio" id="bio" :class="[ 
-                    'resize-none w-full p-2.5 rounded-xl focus:outline-none focus:ring-0 focus:border-gray-300',
-                    errors.bio ? 'border border-red-600 focus:border-red-600' : 'border border-gray-300' 
-                ]" rows="2" placeholder="Write a bio..."
-                    @input="autoResize($event.target); errors.bio = ''">
-                </textarea>
-                <p v-if="errors.bio" class="text-red-600 text-sm mt-1">{{ errors.bio }}</p>
-            </div>
-        </div>
-
-        <div class="flex items-center justify-end p-5 mb-2">
-            <button
-                type="submit"
-                :disabled="isButtonDisabled"
-                :class="[ 
-                    isButtonDisabled ? 'text-gray-300 bg-blue-200 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900 transition ease-in-out duration-150 active:scale-95'
-                ]"
-                class="w-full text-white font-bold focus:outline-none rounded-xl text-sm px-5 py-4 text-center"
-            >
-                Update Profile
-            </button>
-        </div>
-    </form>
+        </form>
     </div>
 </template>
