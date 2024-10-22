@@ -134,14 +134,14 @@ const recentThoughts = computed(() => {
 
 
 <template>
-    <Card padding="p-6" customClass="w-screen max-w-2xl w-full">
-        <h1 class="lg:text-4xl text-3xl font-bold mb-2 text-center text-blue-800">Analytics Overview</h1>
-        <p class="text-center mb-6">Manage your thoughts and gain insights to better understand your patterns.</p>
+    <Card customClass="w-screen max-w-2xl w-full">
+        <h1 class="lg:text-4xl text-3xl font-bold mb-4 text-center text-blue-800">Analytics Overview</h1>
+        <p class="text-center mb-8 text-gray-600">Gain insights into your thought patterns and manage your entries to enhance your self-awareness.</p>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <label for="date-filter" class="block font-semibold mb-2">Filter by Date</label>
             <select v-model="dateFilter" id="date-filter"
-                class="w-full p-2 pl-4 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800">
+                class="w-full p-3 pl-4 border border-blue-200 rounded-3xl focus:outline-none focus:ring-1 focus:ring-blue-800">
                 <option value="today">Today</option>
                 <option value="yesterday">Yesterday</option>
                 <option value="last7days">Last 7 Days</option>
@@ -161,10 +161,10 @@ const recentThoughts = computed(() => {
             </div>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <h3 class="font-semibold pb-2">Overall Summary</h3>
-            <ul class="list-none">
-                <li class="flex justify-between mb-1">
+            <ul class="list-none space-y-2">
+                <li class="flex justify-between">
                     <span>Total Thoughts Logged</span>
                     <span class="font-medium">{{ grandTotalThoughts }}</span>
                 </li>
@@ -175,53 +175,50 @@ const recentThoughts = computed(() => {
             </ul>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <h3 class="font-semibold pb-2">Total Entries</h3>
-            <h1 class="text-5xl font-bold">{{ totalThoughts }}</h1>
+            <h1 class="text-5xl font-bold text-blue-800">{{ totalThoughts }}</h1>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <h3 class="font-bold">Current Average Intensity</h3>
             <div class="text-xs pb-2 text-gray-400">
-                This average intensity level reflects the ratings you've given when logging your thoughts.
+                This value reflects the intensity ratings you assigned when logging your thoughts.
             </div>
             <h1 class="text-blue-800 text-5xl font-bold">{{ averageIntensity }}</h1>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <h3 class="font-semibold pb-2">Intensity Breakdown</h3>
-            <ul class="list-none" v-if="Object.keys(intensityCounts).length">
-                <li v-for="(count, intensity) in intensityCounts" :key="intensity" class="flex justify-between">
-                    <div class="mb-1">
+            <ul class="list-none space-y-2" v-if="Object.keys(intensityCounts).length">
+                <li v-for="(count, intensity) in intensityCounts" :key="intensity" class="flex justify-between space-y-2">
+                    <div>
                         <span class="me-1">Intensity Level:</span>
                         <span>{{ intensity }}</span>
                     </div>
-                    <div class="mb-1">
+                    <div>
                         <span class="me-1">Occurrences:</span>
                         <span>{{ count }}</span>
                     </div>
                 </li>
             </ul>
-            <div v-else class="text-gray-400 text-sm">It's quiet here... Log your thoughts to see insights!
-            </div>
+            <div v-else class="text-gray-400 text-sm">No data available yet. Start logging your thoughts to see the breakdown!</div>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <h3 class="font-semibold pb-2">Thought Categories Breakdown</h3>
-            <ul class="list-none" v-if="Object.keys(thoughtsByCategory).length">
-                <li v-for="(count, category) in thoughtsByCategory" :key="category" class="flex justify-between">
+            <ul class="list-none space-y-2" v-if="Object.keys(thoughtsByCategory).length">
+                <li v-for="(count, category) in thoughtsByCategory" :key="category" class="flex justify-between space-y-2">
                     <span>{{ category }}:</span>
                     <span class="font-medium">{{ count }}</span>
                 </li>
             </ul>
-            <div v-else class="text-gray-400 text-sm">No categories logged yet. Start tracking your
-                thoughts!
-            </div>
+            <div v-else class="text-gray-400 text-sm">You haven't logged any categories yet. Begin tracking your thoughts to visualize the distribution!</div>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-8">
             <h3 class="font-semibold pb-2">Recent Entries</h3>
-            <ul class="list-none" v-if="recentThoughts.length">
+            <ul class="list-none space-y-2" v-if="recentThoughts.length">
                 <li v-for="thought in recentThoughts" :key="thought.id" class="border-b py-2">
                     <div class="mb-2">
                         <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{
@@ -230,13 +227,12 @@ const recentThoughts = computed(() => {
                     <span class="font-medium">{{ thought.thought }}</span>
                 </li>
             </ul>
-            <div v-else class="text-gray-400 text-sm">No recent entries. Log your thoughts to keep track!
-            </div>
+            <div v-else class="text-gray-400 text-sm">No recent entries found. Log your thoughts to keep track of your journey!</div>
         </div>
 
-        <div class="text-center pt-5">
-            <div class="bg-green-100 p-5 rounded-lg text-sm outline-dashed outline-1 outline-green-500">
-                Keep adding your thoughts to gain deeper insights and track your progress.
+        <div class="text-center pt-6">
+            <div class="bg-green-100 p-6 rounded-lg text-sm outline-dashed outline-1 outline-green-500">
+                Keep adding your thoughts to gain deeper insights and track your progress over time.
             </div>
         </div>
     </Card>

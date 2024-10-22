@@ -1,16 +1,12 @@
 <script setup>
 import { RouterLink, useRoute } from 'vue-router';
-import { ref, reactive, onMounted, onBeforeUnmount, computed } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import FormThought from '@/components/FormThought.vue';
 import { defineEmits } from 'vue';
 import Modal from '@/components/Modal.vue';
 import Logo from './Logo.vue';
 import useAuth from '@/useAuth';
-
-const state = reactive({
-    openDropdownId: null,
-    openDropdownMobileId: null
-});
+import Dropdown from './Dropdown.vue';
 
 const { isAuthenticated, logout } = useAuth();
 const isUserAuthenticated = computed(() => isAuthenticated.value);
@@ -37,41 +33,10 @@ const handleThoughtAdded = (newThought) => {
     emit('thoughtAdded', newThought);
 };
 
-const toggleDropdown = () => {
-    state.openDropdownId = state.openDropdownId === 'dropdown' ? null : 'dropdown';
-};
-
-const toggleDropdownMobile = () => {
-    state.openDropdownMobileId = state.openDropdownMobileId === 'dropdown-mobile' ? null : 'dropdown-mobile';
-};
-
-// Close dropdown when clicking outside
-const handleClickOutside = (event) => {
-    const dropdownMobile = document.getElementById('dropdown-mobile-menu');
-    const dropdown = document.getElementById('dropdown-menu');
-    const buttonMobile = document.getElementById('dropdown-button-mobile');
-    const button = document.getElementById('dropdown-button');
-
-    // Check if the click is outside the dropdowns and buttons
-    if (
-        (dropdownMobile && !dropdownMobile.contains(event.target) && buttonMobile && !buttonMobile.contains(event.target)) ||
-        (dropdown && !dropdown.contains(event.target) && button && !button.contains(event.target))
-    ) {
-        state.openDropdownMobileId = null; // Close mobile dropdown
-        state.openDropdownId = null; // Close desktop dropdown
-    }
-};
-
-// Add event listener on mount and remove it on unmount
 onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
     if (!isUserAuthenticated.value) {
         logout();
     }
-});
-
-onBeforeUnmount(() => {
-    document.removeEventListener('click', handleClickOutside);
 });
 </script>
 
@@ -84,26 +49,14 @@ onBeforeUnmount(() => {
             <span class="ms-2 font-bold">Mindful Tracker</span>
         </RouterLink>
         <div class="flex items-center">
-            <!-- Dropdown Button -->
-            <button
-                id="dropdown-button-mobile"
-                @click="toggleDropdownMobile"
-                aria-hidden="true" 
-                :aria-expanded="state.openDropdownMobileId === 'dropdown-mobile'"
-                class="flex items-center justify-end transition ease-in-out duration-150 active:scale-90 h-16 w-16 group">
-                <svg class="text-gray-300 w-7 h-7 hover:text-blue-800 transition-colors duration-500"
-                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
-                </svg>
-            </button>
-
-            <!-- Dropdown Menu -->
-            <div 
-                v-if="state.openDropdownMobileId === 'dropdown-mobile'" 
-                id="dropdown-mobile-menu"
-                class="hidden z-10 absolute font-semibold right-12 top-12 bg-white divide-y divide-gray-200 rounded-xl shadow w-44 border border-gray-300">
+            <Dropdown>
+                <template #buttonContent>
+                    <svg class="text-gray-300 w-7 h-7 hover:text-blue-800 transition-colors duration-500"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+                    </svg>
+                </template>
                 <ul class="py-2 px-1 text-sm" aria-labelledby="dropdownDividerButton">
                     <li>
                         <a href="#" @click="logout"
@@ -112,7 +65,7 @@ onBeforeUnmount(() => {
                         </a>
                     </li>
                 </ul>
-            </div>
+            </Dropdown>
         </div>
     </div>
 
@@ -164,34 +117,23 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="flex flex-col items-center">
-            <button 
-                id="dropdown-button"
-                @click="toggleDropdown"
-                aria-hidden="true" 
-                :aria-expanded="state.openDropdownId === 'dropdown'"
-                class="flex items-center justify-center transition ease-in-out duration-150 active:scale-90 h-16 w-16 group">
-                <svg class="text-gray-300 w-7 h-7 hover:text-blue-800 transition-colors duration-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z"/>
-                </svg>
-            </button>
-
-            <div 
-                id="dropdown-menu" 
-                v-if="state.openDropdownId === 'dropdown'" 
-                class="z-10 absolute font-semibold left-12 bottom-12 bg-white divide-y divide-gray-200 rounded-xl shadow w-44 border border-gray-300"
-            >
+            <Dropdown>
+                <template #buttonContent>
+                    <svg class="text-gray-300 w-7 h-7 hover:text-blue-800 transition-colors duration-500"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z" />
+                    </svg>
+                </template>
                 <ul class="py-2 px-1 text-sm" aria-labelledby="dropdownDividerButton">
                     <li>
-                        <a 
-                            @click="logout"
-                            href="#" 
-                            class="block px-4 py-2 hover:bg-gray-100 transition ease-in-out duration-150 active:scale-95 rounded-lg" 
-                        >
+                        <a href="#" @click="logout"
+                            class="block px-4 py-2 hover:bg-gray-100 transition ease-in-out duration-150 active:scale-95 rounded-lg">
                             Logout
                         </a>
                     </li>
                 </ul>
-            </div>
+            </Dropdown>
         </div>
         
     </div>

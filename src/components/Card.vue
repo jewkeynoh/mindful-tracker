@@ -7,8 +7,8 @@ defineProps({
         default: ''
     },
     bg: {
-        type: String,
-        default: 'bg-white'
+            type: String,
+            default: 'bg-white'
     },
     border: {
         type: String,
@@ -18,10 +18,6 @@ defineProps({
         type: String,
         default: 'lg:shadow-sm'
     },
-    screen: {
-        type: String,
-        default: 'h-screen h-full'
-    },
     padding: {
         type: String,
         default: 'p-6'
@@ -30,7 +26,7 @@ defineProps({
 </script>
 
 <template>
-    <div :class="`${customClass} ${bg} ${border} ${padding} ${shadow} ${screen}`">
+    <div :class="`${customClass} ${bg} ${border} ${padding} ${shadow} min-h-screen`">
         <slot></slot>
     </div>
 </template>

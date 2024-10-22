@@ -2,6 +2,7 @@
 import { defineProps, ref, computed } from 'vue';
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
+import Dropdown from './Dropdown.vue';
 
 const toast = useToast();
 
@@ -48,8 +49,8 @@ const toggleSaveThought = async () => {
     const updatedThought = { ...props.thought, saved: newSavedState };
 
     try {
-        await axios.put(`api/thoughts/${props.thought.id}`, updatedThought); // Adjust the URL as needed
-        emit('thoughtUpdated', updatedThought); // Emit the updated thought
+        await axios.put(`api/thoughts/${props.thought.id}`, updatedThought);
+        emit('thoughtUpdated', updatedThought);
 
         if (newSavedState === 1) {
             toast.success('Thought saved successfully!');
@@ -68,11 +69,8 @@ const toggleSaveThought = async () => {
         <span class="absolute flex justify-center items-center w-8 h-8 bg-blue-100 rounded-full -start-4 ring-8 ring-white">{{ thought.emoji }}</span>
         <div class="flex justify-between items-start mb-3">
             <h3 class="flex-1 max-w-sm text-lg font-semibold text-gray-900 line-clamp-1 pr-4">{{ thought.thought }}</h3>
-            <div class="relative">
-                <button
-                    @click="toggleDropdown"
-                    id="dropdown-thought-button"
-                    class="flex items-center justify-center w-8 h-8 text-gray-800 transition transform hover:bg-gray-100 rounded-full p-1">
+            <Dropdown customClass="lg:-ml-44 -ml-1">
+                <template #buttonContent>
                     <svg 
                         class="w-6 h-6 text-gray-800" 
                         aria-hidden="true" 
@@ -84,25 +82,22 @@ const toggleSaveThought = async () => {
                         viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
                     </svg>
-                </button>
-
-                <div v-if="isDropdownOpen" class="z-10 absolute font-semibold right-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-md w-44 border border-gray-300">
-                    <ul class="py-1 text-sm" aria-labelledby="dropdownDividerButton">
-                        <li>
-                            <a 
-                                href="#" 
-                                class="block px-4 py-2 hover:bg-gray-50 transition ease-in-out duration-150 active:scale-95 rounded" 
-                                @click.prevent="toggleSaveThought" 
-                            >
-                                {{ thought.saved === 1 ? 'Unsave' : 'Save' }}
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="py-2 px-1">
+                </template>
+                <ul class="py-1 text-sm divide-y divide-gray-200 font-semibold" aria-labelledby="dropdownDividerButton">
+                    <li>
+                        <a 
+                            href="#" 
+                            class="block px-4 py-2 hover:bg-gray-50 transition ease-in-out duration-150 active:scale-95 rounded" 
+                            @click.prevent="toggleSaveThought" 
+                        >
+                            {{ thought.saved === 1 ? 'Unsave' : 'Save' }}
+                        </a>
+                    </li>
+                    <li>
                         <a @click.prevent="showDeleteModal(thought.id)" class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-50 cursor-pointer transition ease-in-out duration-150 active:scale-95 rounded">Delete</a>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                </ul>
+            </Dropdown>
         </div>
         <div class="flex justify-between font-medium text-sm text-gray-500 mb-3 -mt-3">
             <time class="text-gray-400 leading-none">{{ thought.created_at }}</time>

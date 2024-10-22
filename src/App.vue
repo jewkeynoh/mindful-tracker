@@ -36,17 +36,15 @@ onMounted(() => {
       </header>
 
       <main class="flex-grow flex items-center justify-center">
-        <section class="flex items-center justify-center">
-          <div v-if="isUserAuthenticated">
+        <section v-if="isUserAuthenticated" class="flex items-center justify-center">
             <RouterView :thoughts="thoughts" />
-          </div>
+        </section>
 
-          <div v-else>
-            <Login />
-          </div>
+        <section v-else class="w-screen flex items-center justify-center px-4 lg:px-8">
+          <Login/>
         </section>
       </main>
-
+      <Footer v-if="!isUserAuthenticated" />
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@ import Analytics from '@/components/Analytics.vue';
 </script>
 
 <template>
-    <div class="pt-20">
-        <Analytics class="lg:pt-6 pt-16"/>
+    <div class="pt-20 lg:pb-0 pb-20">
+        <Analytics/>
     </div>
 </template>
